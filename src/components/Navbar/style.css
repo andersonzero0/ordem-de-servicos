@@ -1,0 +1,62 @@
+.navbar {
+
+    background-color: #0E213E;
+
+    width: 6vw;
+    height: 100vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 2rem;
+}
+
+.link {
+
+    width: 10%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+}
+
+.link > .tooltip {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    left: -10%;
+    gap: 2.5rem;
+    height: 3rem;
+    padding: .5rem 2rem .5rem 5rem;
+    border-radius: .25rem;
+    transition: ease 0.1s;
+
+    z-index: 3;
+}
+
+.link > img {
+
+    z-index: 4;
+    
+}
+
+.link:hover .tooltip {
+
+    transition: ease 0.2s;
+
+    visibility: visible;
+    left: 0;
+
+    background-color: #071934;
+    
+}
