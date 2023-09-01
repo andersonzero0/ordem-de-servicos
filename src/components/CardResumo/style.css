@@ -1,0 +1,19 @@
+.conteinerCardResumo {
+
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px 0px #00000040;
+    background: #3485FF33;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: start;
+
+    padding: 0 10px;
+
+    width: 270px;
+    height: 150px;
+
+    color:#0E213E;
+    
+}

@@ -1,11 +1,11 @@
-import { Button } from "@mui/material"
+import ButtonNew from "../ButtonNew"
 import "./style.css"
 
 export default function HeaderDashboard() {
 
     return (
 
-        <header>
+        <header className="headerDashboard">
 
             <div>
 
@@ -15,10 +15,7 @@ export default function HeaderDashboard() {
 
             <div>
 
-            <Button className="btn-novaOrdem" variant="contained">
-                <img src="./Plus.svg" alt="" />
-                <p>Nova ordem</p>
-            </Button>
+                <ButtonNew title="Nova ordem" />
                 
             </div>
             

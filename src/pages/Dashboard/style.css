@@ -1,0 +1,17 @@
+.sectionDashboard {
+
+    width: 94vw;
+    padding: 0 2%;
+    
+}
+
+.conteinerDashboard {
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: start;
+
+    padding-top: 20px;
+    
+}

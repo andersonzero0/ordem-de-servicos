@@ -1,9 +1,18 @@
-.btn-novaOrdem {
+.headerDashboard {
+
+    width: 90vw;
+    height: 20vh;
+
+    margin: auto;
 
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+
+    padding: 0 2%;
+
+    border-bottom: 2px solid rgb(52, 133, 255, 0.2);
+    border-width: 2px;
     
 }
