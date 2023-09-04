@@ -12,6 +12,7 @@ import InfoClient from "../../components/FormOrdemServico/InfoCliet";
 import InfoVeicle from "../../components/FormOrdemServico/InfoVeicle";
 import InfoService from "../../components/FormOrdemServico/InfoService";
 import InfoGeneral from "../../components/FormOrdemServico/infoGeneral";
+import AdditionalRemarks from "../../components/FormOrdemServico/AdditionalRemarks";
 
 export default function Dashboard() {
 
@@ -42,6 +43,9 @@ export default function Dashboard() {
                 }
                 {
                     pageForm == 4 ? <InfoGeneral/> : ""
+                }
+                {
+                    pageForm == 5 ? <AdditionalRemarks/> : ""
                 }
                 
                 <footer className="footerForm">

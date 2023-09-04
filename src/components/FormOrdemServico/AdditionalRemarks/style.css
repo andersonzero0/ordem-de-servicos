@@ -56,3 +56,30 @@ legend {
     color: #0E213E;
     
 }
+
+.conteinerBox {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4rem;
+    
+}
+
+.box {
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    gap: 1rem;
+    
+}
+
+.box > div {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
