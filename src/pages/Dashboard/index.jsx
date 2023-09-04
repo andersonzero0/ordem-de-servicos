@@ -13,12 +13,69 @@ import InfoVeicle from "../../components/FormOrdemServico/InfoVeicle";
 import InfoService from "../../components/FormOrdemServico/InfoService";
 import InfoGeneral from "../../components/FormOrdemServico/infoGeneral";
 import AdditionalRemarks from "../../components/FormOrdemServico/AdditionalRemarks";
+import Payment from "../../components/FormOrdemServico/Payment";
 
 export default function Dashboard() {
 
+    const [ dataForm, setDataForm ] = useState({
+        name: "",
+        document: "",
+        nickname: "",
+        requester: "",
+        address: "",
+        phone: "",
+        email: "",
+        budget: true,
+
+        model: "",
+        brand: "",
+        plate: "",
+        fleet: "",
+        chassis: "",
+        renavam: "",
+        km: "",
+        color: "",
+        age: "",
+        observation: "",
+
+        reported: "",
+        problem_verified: "",
+        services_performed: "",
+
+        nf_service: "",
+        nf_parts: "",
+        invoices: "",
+        description_general: "",
+
+        obs_wheel: "",
+        obs_accessories: "",
+        obs_structure: "",
+        add_observation: "",
+        extra_observation: ""
+    })
+
     const [visible, setVisible] = useState(false);
 
+    const [titleButtom, setTitleButton] = useState("Continuar")
+
     const [pageForm, setPageForm] = useState(1)
+
+    function paginationForm() {
+
+        if(pageForm < 6) {
+
+            console.log(dataForm);
+
+            setPageForm(pageForm + 1)
+            
+        }
+        if(pageForm == 5) {
+
+            setTitleButton("Concluir")
+            
+        }
+        
+    }
 
     return (
         <section className="sectionDashboard">
@@ -30,32 +87,36 @@ export default function Dashboard() {
                 <ResumoFinanceiro/>
             </div>
 
-            <Dialog header="ORDEM DE SERVIÇO" style={{ width: '60vw' }} visible={visible} onHide={() => {setVisible(!visible)}}>
+            <Dialog closable closeOnEscape header="ORDEM DE SERVIÇO" style={{ width: '60vw' }} visible={visible} onHide={() => {setVisible(!visible)}}>
 
                 {
-                    pageForm == 1 ? <InfoClient/> : ""
+                    pageForm == 1 ? <InfoClient setForm={(field, value) => setDataForm({...dataForm, [field]:value})} data={dataForm}/> : ""
                 }
                 { 
-                    pageForm == 2 ? <InfoVeicle/> : ""
+                    pageForm == 2 ? <InfoVeicle setForm={(field, value) => setDataForm({...dataForm, [field]:value})} data={dataForm}/> : ""
                 }
                 {
-                    pageForm == 3 ? <InfoService/> : ""
+                    pageForm == 3 ? <InfoService setForm={(field, value) => setDataForm({...dataForm, [field]:value})} data={dataForm}/> : ""
                 }
                 {
-                    pageForm == 4 ? <InfoGeneral/> : ""
+                    pageForm == 4 ? <InfoGeneral setForm={(field, value) => setDataForm({...dataForm, [field]:value})} data={dataForm}/> : ""
                 }
                 {
                     pageForm == 5 ? <AdditionalRemarks/> : ""
                 }
+                {
+                    pageForm == 6 ? <Payment/> : ""
+                }
                 
                 <footer className="footerForm">
 
-                    <Button icon="pi pi-times" label="Cancelar" severity="danger" outlined />
+                    <Button onClick={() => {
+                        setPageForm(1)
+                        setVisible(false)
+                    }} icon="pi pi-times" label="Cancelar" severity="danger" outlined />
 
-                    <Button label="Continuar" icon="pi pi-arrow-right" severity="info" iconPos="right"
-                    onClick={() => {
-                        setPageForm(pageForm + 1)
-                    }}
+                    <Button label={titleButtom} icon="pi pi-arrow-right" severity="info" iconPos="right"
+                    onClick={paginationForm}
                     />
                     
                 </footer>

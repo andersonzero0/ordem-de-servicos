@@ -40,3 +40,9 @@
     align-items: center;
     
 }
+
+.p-dialog-header-icons {
+
+    display: none !important;
+    
+}
