@@ -1,7 +1,7 @@
 import ButtonNew from "../ButtonNew"
 import "./style.css"
 
-export default function HeaderDashboard() {
+export default function HeaderDashboard({ setVisible }) {
 
     return (
 
@@ -15,7 +15,7 @@ export default function HeaderDashboard() {
 
             <div>
 
-                <ButtonNew title="Nova ordem" />
+                <ButtonNew title="Nova ordem" onClick={setVisible} />
                 
             </div>
             
