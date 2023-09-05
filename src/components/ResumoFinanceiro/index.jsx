@@ -1,15 +1,21 @@
 import CardResumo from "../CardResumo"
 import "./style.css"
 
-export default function ResumoFinanceiro() {
+export default function ResumoFinanceiro({ ordens }) {
+
+    const valorMes = ordens.reduce((acc, value) => {
+
+            return acc + Number(value.total_payable)
+            
+    }, 0)
+
+    const servicos = ordens.length
 
     return (
 
         <div>
 
-            <h2 className="titleResumoFinanceiro">Resumo Financeiro</h2>
-
-            <CardResumo totalMes={"13.800,50"} totalServicos={"07"}/>
+            <CardResumo totalMes={valorMes} totalServicos={servicos}/>
             
         </div>
         

@@ -17,6 +17,8 @@ import Payment from "../../components/FormOrdemServico/Payment";
 
 export default function Dashboard() {
 
+    const [ordens, setOrdens] = useState([])
+
     const modelForm = {
             name: "",
             document: "",
@@ -72,8 +74,6 @@ export default function Dashboard() {
 
     function paginationForm() {
 
-        console.log(dataForm);
-
         if(pageForm == 1) {
 
             if(dataForm.name == "" || dataForm.requester == "") {
@@ -127,6 +127,7 @@ export default function Dashboard() {
 
         if(pageForm == 6) {
 
+            setOrdens([...ordens, dataForm])
             setConcluded(true)
             
         }
@@ -140,8 +141,11 @@ export default function Dashboard() {
             <HeaderDashboard setVisible={() => setVisible(!visible)}/>
 
             <div className="conteinerDashboard">
-                <UltimasOrdens/>
-                <ResumoFinanceiro/>
+                <UltimasOrdens ordens={ordens}/>
+                <div>
+                    <h2 className="titleResumoFinanceiro">Resumo Financeiro</h2>
+                    <ResumoFinanceiro ordens={ordens}/>
+                </div>
             </div>
 
             <Dialog closable={false} header="ORDEM DE SERVIÇO" style={{ width: '60vw' }} visible={visible} onHide={() => {setVisible(!visible)}}>

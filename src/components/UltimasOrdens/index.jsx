@@ -2,7 +2,8 @@ import { Car } from "lucide-react"
 import CardOrdem from "../CardOrdem"
 import "./style.css"
 
-export default function UltimasOrdens() {
+export default function UltimasOrdens({ ordens }) {
+    console.log(ordens);
 
     return (
 
@@ -10,14 +11,22 @@ export default function UltimasOrdens() {
 
             <h2 className="titleOrdens">Últimas Ordens</h2>
 
-            <CardOrdem 
-                nome={"Antonio Carlos de Oliveira Marcondes"}
-                modelo={"Civic"}
-                marca={"Honda"}
-                placa={"BRA2E19"}
-                id={"XXXX"}
-                status={"Pago"}
-            />
+            {
+                ordens.length != 0 ? ordens.map((data, key) => {
+                    console.log(data);
+
+                    return (<CardOrdem 
+                        name={data.name}
+                        model={data.model}
+                        brand={data.brand}
+                        place={data.plate}
+                        id={key}
+                        status={data.status === 'paidout' ?  "Pago" : "Pendente"}
+                        key={key}
+                    />)
+                    
+                }) : <p>Não há ordens!</p>
+            }
             
         </section>
         

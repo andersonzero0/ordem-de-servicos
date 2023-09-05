@@ -1,6 +1,6 @@
 import "./style.css"
 
-export default function CardOrdem({nome, modelo, marca, placa, id, status}) {
+export default function CardOrdem({ name, model, brand, place, id, status }) {
 
     return (
 
@@ -8,13 +8,13 @@ export default function CardOrdem({nome, modelo, marca, placa, id, status}) {
 
             <div className="boxInfoCustomer">
 
-                <h3 className="nameCard">{nome}</h3>
+                <h3 className="nameCard">{name}</h3>
 
                 <div className="box_infosCar">
 
-                    <p>{modelo}</p>
-                    <p>{marca}</p>
-                    <p>{placa}</p>
+                    <p>{model}</p>
+                    <p>{brand}</p>
+                    <p>{place}</p>
                     
                 </div>
                 

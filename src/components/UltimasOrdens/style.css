@@ -8,5 +8,9 @@
 .conteinerOrdens {
 
     width: 60vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.9rem;
     
 }

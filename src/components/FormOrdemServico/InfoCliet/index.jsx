@@ -15,6 +15,7 @@ export default function InfoClient({ setForm, data }) {
             <div>
 
                 <TextField
+                    type="text"
                     required
                     size="small"
                     className="input"
@@ -26,6 +27,7 @@ export default function InfoClient({ setForm, data }) {
                 />
                 <div className="boxInput">
                     <TextField 
+                    
                     size="small" 
                     className="input"
                     label="CNPJ/CPF"
