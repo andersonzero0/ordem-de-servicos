@@ -17,128 +17,128 @@ import Payment from "../../components/FormOrdemServico/Payment";
 
 export default function Dashboard() {
 
-    const [ordens, setOrdens] = useState([])
+     const [ordens, setOrdens] = useState([])
 
-    const modelForm = {
-            name: "",
-            document: "",
-            nickname: "",
-            requester: "",
-            address: "",
-            phone: "",
-            email: "",
-            budget: true,
+    // const modelForm = {
+    //         name: "",
+    //         document: "",
+    //         nickname: "",
+    //         requester: "",
+    //         address: "",
+    //         phone: "",
+    //         email: "",
+    //         budget: true,
     
-            model: "",
-            brand: "",
-            plate: "",
-            fleet: "",
-            chassis: "",
-            renavam: "",
-            km: "",
-            color: "",
-            age: "",
-            observation: "",
+    //         model: "",
+    //         brand: "",
+    //         plate: "",
+    //         fleet: "",
+    //         chassis: "",
+    //         renavam: "",
+    //         km: "",
+    //         color: "",
+    //         age: "",
+    //         observation: "",
     
-            reported: "",
-            problem_verified: "",
-            services_performed: "",
+    //         reported: "",
+    //         problem_verified: "",
+    //         services_performed: "",
     
-            nf_service: "",
-            nf_parts: "",
-            invoices: "",
-            description_general: "",
+    //         nf_service: "",
+    //         nf_parts: "",
+    //         invoices: "",
+    //         description_general: "",
     
-            obs_wheel: "",
-            obs_accessories: "",
-            obs_structure: "",
-            add_observation: "",
-            extra_observation: "",
+    //         obs_wheel: "",
+    //         obs_accessories: "",
+    //         obs_structure: "",
+    //         add_observation: "",
+    //         extra_observation: "",
 
-            total_price: "",
-            discount: "",
-            payment_method: "pending",
-            total_payable: "",
-            status: ""
-    }
+    //         total_price: "",
+    //         discount: "",
+    //         payment_method: "pending",
+    //         total_payable: "",
+    //         status: ""
+    // }
 
-    const [ dataForm, setDataForm ] = useState(modelForm)
+    // const [ dataForm, setDataForm ] = useState(modelForm)
 
-    const [visible, setVisible] = useState(false);
-    const [visibleAlert, setVisibleAlert] = useState(false)
-    const [concluded, setConcluded] = useState(false)
+    // const [visible, setVisible] = useState(false);
+    // const [visibleAlert, setVisibleAlert] = useState(false)
+    // const [concluded, setConcluded] = useState(false)
 
-    const [titleButtom, setTitleButton] = useState("Continuar")
+    // const [titleButtom, setTitleButton] = useState("Continuar")
 
-    const [pageForm, setPageForm] = useState(1)
+    // const [pageForm, setPageForm] = useState(1)
 
-    function paginationForm() {
+    // function paginationForm() {
 
-        if(pageForm == 1) {
+    //     if(pageForm == 1) {
 
-            if(dataForm.name == "" || dataForm.requester == "") {
+    //         if(dataForm.name == "" || dataForm.requester == "") {
 
-                setVisibleAlert(true)
+    //             setVisibleAlert(true)
                 
-            }else {
+    //         }else {
 
-                setPageForm(pageForm + 1)
+    //             setPageForm(pageForm + 1)
                 
-            }
+    //         }
             
-        }
-        if(pageForm == 2) {
+    //     }
+    //     if(pageForm == 2) {
 
-            if(dataForm.plate == "" || dataForm.km == "") {
+    //         if(dataForm.plate == "" || dataForm.km == "") {
 
-                setVisibleAlert(true)
+    //             setVisibleAlert(true)
                 
-            }else {
+    //         }else {
 
-                setPageForm(pageForm + 1)
+    //             setPageForm(pageForm + 1)
                 
-            }
+    //         }
             
-        }
-        if(pageForm == 3) {
+    //     }
+    //     if(pageForm == 3) {
 
-            if(dataForm.reported == "") {
+    //         if(dataForm.reported == "") {
 
-                setVisibleAlert(true)
+    //             setVisibleAlert(true)
                 
-            }else {
+    //         }else {
 
-                setPageForm(pageForm + 1)
+    //             setPageForm(pageForm + 1)
             
-            }
+    //         }
             
-        }
-        if(pageForm == 5) {
+    //     }
+    //     if(pageForm == 5) {
 
-            setTitleButton("Concluir")
+    //         setTitleButton("Concluir")
             
-        }
+    //     }
         
-        if(pageForm > 3 && pageForm < 6) {
+    //     if(pageForm > 3 && pageForm < 6) {
 
-            setPageForm(pageForm + 1)
+    //         setPageForm(pageForm + 1)
             
-        }
+    //     }
 
-        if(pageForm == 6) {
+    //     if(pageForm == 6) {
 
-            setOrdens([...ordens, dataForm])
-            setConcluded(true)
+    //         setOrdens([...ordens, dataForm])
+    //         setConcluded(true)
             
-        }
+    //     }
         
         
-    }
+    // }
 
     return (
         <section className="sectionDashboard">
 
-            <HeaderDashboard setVisible={() => setVisible(!visible)}/>
+            <HeaderDashboard setOrdens={(pram) => setOrdens([...ordens, pram])} ordens={ordens}/>
 
             <div className="conteinerDashboard">
                 <UltimasOrdens ordens={ordens}/>
@@ -148,7 +148,7 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            <Dialog closable={false} header="ORDEM DE SERVIÇO" style={{ width: '60vw' }} visible={visible} onHide={() => {setVisible(!visible)}}>
+            {/* <Dialog closable={false} header="ORDEM DE SERVIÇO" style={{ width: '60vw' }} visible={visible} onHide={() => {setVisible(!visible)}}>
 
                 {
                     pageForm == 1 ? <InfoClient setForm={(field, value) => setDataForm({...dataForm, [field]:value})} data={dataForm}/> : ""
@@ -208,7 +208,7 @@ export default function Dashboard() {
                     
                 </footer>
                 
-            </Dialog>
+            </Dialog> */}
             
         </section>
     )

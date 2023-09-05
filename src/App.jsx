@@ -23,6 +23,7 @@ function App() {
     <Routes>
 
       <Route element={<Layout/>}>
+        <Route path="/" element={<Dashboard/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/financeiro" element={<Financeiro/>}/>
         <Route path="/arquivo" element={<Arquivo/>}/>
