@@ -4,15 +4,9 @@ import { InputSwitch } from 'primereact/inputswitch';
 
 import "./style.css"
 
-export default function Payment() {
+export default function Payment({ setForm, data }) {
 
-    const [payment, setPayment] = useState('');
     const [checked, setChecked] = useState(false);
-
-    const handleChange = (event) => {
-      setPayment(event.target.value);
-    };
-  
 
     return (
         <form className="form">
@@ -20,13 +14,25 @@ export default function Payment() {
 
             <div>
 
-                <TextField InputProps={{
+                <TextField value={data.total_price}
+                onChange={(event) => {
+
+                    setForm("total_price", event.target.value)
+
+                }} InputProps={{
                     startAdornment: <InputAdornment position="start">R$</InputAdornment>,
                 }} label="Preço Total"/>
 
-                <TextField InputProps={{
+
+                <TextField value={data.discount}
+                onChange={(event) => {
+
+                    setForm("discount", event.target.value)
+
+                }} InputProps={{
                     startAdornment: <InputAdornment position="start">R$</InputAdornment>,
                 }} label="Desconto"/>
+
 
                 <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
@@ -34,9 +40,13 @@ export default function Payment() {
                         <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={payment}
+                        value={data.payment_method}
                         label="Forma de Pagamento"
-                        onChange={handleChange}
+                        onChange={(event) => {
+
+                            setForm("payment_method", event.target.value)
+                            
+                        }}
                         >
                         <MenuItem value={"pix"}>Pix</MenuItem>
                         <MenuItem value={"boleto"}>Boleto</MenuItem>
@@ -45,9 +55,18 @@ export default function Payment() {
                     </FormControl>
                 </Box>
 
-                <TextField InputProps={{
+
+                <TextField 
+                value={data.total_payable}
+                onChange={(event) => {
+
+                    setForm("total_payable", event.target.value)
+
+                }} InputProps={{
                     startAdornment: <InputAdornment position="start">R$</InputAdornment>,
                 }} label="Total a pagar"/>
+
+                
 
                 <div className="conteinerSwitch">
 
@@ -57,7 +76,20 @@ export default function Payment() {
 
                         <p>Pendente</p>
 
-                        <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)}/>
+                        <InputSwitch checked={checked} onChange={(e) => {
+                            setChecked(e.value)
+
+                            if(checked) {
+
+                                setForm("status", "pending")
+                                
+                            } else {
+
+                                setForm("status", "paidout")
+                                
+                            }
+                            
+                        }}/>
 
                         <p>Paga</p>
                         

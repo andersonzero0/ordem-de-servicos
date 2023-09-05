@@ -9,6 +9,7 @@ export default function InfoService({ setForm, data }) {
 
       <div>
         <TextField
+        required
         minRows={"3"} 
         multiline 
         label="Problema Informado"

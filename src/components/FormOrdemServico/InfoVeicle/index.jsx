@@ -32,6 +32,7 @@ export default function InfoVeicle({ setForm, data }) {
                     />
 
                     <TextField
+                    required
                     size="small"
                     className="input"
                     label="Placa"
@@ -76,6 +77,7 @@ export default function InfoVeicle({ setForm, data }) {
 
                 <div className="boxInput">
                     <TextField
+                    required    
                     size="small"
                     className="input"
                     label="Km"

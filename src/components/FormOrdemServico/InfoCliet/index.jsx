@@ -15,6 +15,7 @@ export default function InfoClient({ setForm, data }) {
             <div>
 
                 <TextField
+                    required
                     size="small"
                     className="input"
                     label="Nome/Razão"
@@ -45,6 +46,7 @@ export default function InfoClient({ setForm, data }) {
                 </div>
 
                 <TextField
+                required
                 size="small"
                 className="input"
                 label="Solicitante"

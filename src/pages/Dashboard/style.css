@@ -41,8 +41,19 @@
     
 }
 
-.p-dialog-header-icons {
+.alertMessage {
 
-    display: none !important;
+    font-weight: 500;
+
+}
+
+.conteinerAlert {
+
+
+    text-align: center;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px; 
     
 }
