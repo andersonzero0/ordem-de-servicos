@@ -16,7 +16,7 @@ export default function Arquivo() {
 
             <div className="conteinerDashboard">
                 {
-                    ordens.length === 0 ? 
+                    ordens.length != 0 ? 
                     <div style={{
                         display: 'flex',
                         flexFlow: 'column nowrap',
