@@ -1,0 +1,85 @@
+.sectionArquivos {
+
+    width: 94vw;
+    padding: 0 2%;
+    
+}
+
+.conteinerNãoEncontrado {
+
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+
+    transform: translate(110%,50%);
+    
+    
+}
+
+.conteinerNãoEncontrado > img {
+
+    width: 24rem;
+    
+}
+
+.inputSearch {
+
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 8px !important;
+    border: 2px solid #0E213E !important;
+    color: #0E213E !important;
+    
+}
+
+.conteinerOrganize {
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+
+    background-color: #3485FF33;
+
+    padding: 10px;
+
+    text-align: start;
+
+    border-radius: 8px;
+
+    color: #0E213E;
+    
+}
+
+.conteinerOrganize > div {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.conteinerOrganize > div > button {
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    border: none;
+    background-color: #F5F5F5;
+    border-radius: 2px;
+    
+}
+
+.conteinerFilter {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    gap: 20px;
+    
+}

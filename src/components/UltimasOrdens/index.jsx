@@ -3,13 +3,10 @@ import CardOrdem from "../CardOrdem"
 import "./style.css"
 
 export default function UltimasOrdens({ ordens }) {
-    console.log(ordens);
 
     return (
 
         <section className="conteinerOrdens">
-
-            <h2 className="titleOrdens">Últimas Ordens</h2>
 
             {
                 ordens.length != 0 ? ordens.map((data, key) => {
