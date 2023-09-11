@@ -6,25 +6,38 @@ import Financeiro from "../pages/Financeiro";
 import Arquivo from "../pages/Arquivo";
 import Login from "../components/Login";
 import { useContext } from "react";
+import { Loader } from "lucide-react";
 
 export default function Router() {
+  const { token, loading } = useContext(AuthContext);
 
-    const { token } = useContext(AuthContext)
-
+  if (loading) {
     return (
-        <Routes>
-            {token ? (
-            <Route element={<Layout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/financeiro" element={<Financeiro />} />
-                <Route path="/arquivo" element={<Arquivo />} />
-            </Route>
-            ) : (
-            <Route path="/" element={<Login />} />
-            )}
-            <Route path="*" element={<Navigate replace to="/"/>}/> 
-        </Routes>
-    )
-                
+      <div style={{
+        display: "flex",
+        width: "100%",
+        height: "100vh",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+        <Loader />
+      </div>
+    );
+  }
+
+  return (
+    <Routes>
+      {token ? (
+        <Route element={<Layout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/financeiro" element={<Financeiro />} />
+          <Route path="/arquivo" element={<Arquivo />} />
+        </Route>
+      ) : (
+        <Route path="/" element={<Login />} />
+      )}
+      <Route path="*" element={<Navigate replace to="/" />} />
+    </Routes>
+  );
 }
