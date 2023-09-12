@@ -51,9 +51,9 @@ export default function HeaderDashboard({ordens, setOrdens}) {
 
             total_price: "",
             discount: "",
-            payment_method: "pending",
+            payment_method: "",
             total_payable: "",
-            status: ""
+            status: "pending"
     }
 
     const [ dataForm, setDataForm ] = useState(modelForm)
