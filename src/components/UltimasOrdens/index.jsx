@@ -1,16 +1,19 @@
-import { Car } from "lucide-react"
 import CardOrdem from "../CardOrdem"
 import "./style.css"
 
-export default function UltimasOrdens({ ordens }) {
+import { OrderContext } from "../../contexts/Order";
+import { useContext } from "react";
+
+export default function UltimasOrdens() {
+
+    const { orders } = useContext(OrderContext)
 
     return (
 
         <section className="conteinerOrdens">
 
             {
-                ordens.length != 0 ? ordens.map((data, key) => {
-                    console.log(data);
+                orders.length != 0 ? orders.map((data, key) => {
 
                     return (<CardOrdem 
                         name={data.name}
@@ -21,7 +24,7 @@ export default function UltimasOrdens({ ordens }) {
                         status={data.status === 'paidout' ?  "Pago" : "Pendente"}
                         key={key}
                     />)
-                    
+                        
                 }) : <p>Não há ordens!</p>
             }
             

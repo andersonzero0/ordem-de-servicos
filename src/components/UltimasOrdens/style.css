@@ -12,5 +12,9 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 0.9rem;
+
+    height: 69.5vh;
+
+    overflow: auto;
     
 }

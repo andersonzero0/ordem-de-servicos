@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import HeaderDashboard from "../../components/HeaderDashboard"
 import UltimasOrdens from "../../components/UltimasOrdens"
@@ -8,12 +8,11 @@ import "./style.css"
 
 export default function Dashboard() {
 
-     const [ordens, setOrdens] = useState([])
 
     return (
         <section className="sectionDashboard">
 
-            <HeaderDashboard setOrdens={(pram) => setOrdens([...ordens, pram])} ordens={ordens}/>
+            <HeaderDashboard/>
 
             <div className="conteinerDashboard">
                 <div style={{
@@ -22,11 +21,11 @@ export default function Dashboard() {
                     gap: '10px'
                 }}>
                     <h2 className="titleOrdens">Últimas Ordens</h2>
-                    <UltimasOrdens ordens={ordens}/>
+                    <UltimasOrdens/>
                 </div>
                 <div>
                     <h2 className="titleResumoFinanceiro">Resumo Financeiro</h2>
-                    <ResumoFinanceiro ordens={ordens}/>
+                    <ResumoFinanceiro/>
                 </div>
             </div>
             
