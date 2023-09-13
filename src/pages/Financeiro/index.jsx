@@ -20,7 +20,7 @@ export default function Financeiro() {
             <div className="conteinerDashboard">
                 <div>
                     <h2 className="titleResumoFinanceiro">Financeiro</h2>
-                    <ResumoFinanceiro ordens={ordem}/>
+                    <ResumoFinanceiro/>
                 </div>
                 
                 <Charts setMonth={(param) => setOrdem(param)}/>

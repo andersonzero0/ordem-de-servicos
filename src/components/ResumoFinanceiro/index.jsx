@@ -6,12 +6,22 @@ import { OrderContext } from "../../contexts/Order"
 export default function ResumoFinanceiro() {
 
     const { orders } = useContext(OrderContext)
+
+    const valueTotal = orders.reduce((acc, value) => {
+        if(value.status == "paidout") {
+
+            return acc + Number(value.total_payable)
+            
+        }
+
+        return acc
+    }, 0)
     
     return (
 
         <div>
 
-            <CardResumo totalMes={orders.value} totalServicos={orders.lenght}/>
+            <CardResumo totalMes={valueTotal} totalServicos={orders.length}/>
             
         </div>
         

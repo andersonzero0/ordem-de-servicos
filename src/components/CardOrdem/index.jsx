@@ -1,7 +1,8 @@
 import "./style.css"
 
-export default function CardOrdem({ name, model, brand, place, id, status }) {
+export default function CardOrdem({ name, model, brand, plate, id, status }) {
 
+    
     return (
 
         <div className="conteinerCard">
@@ -14,7 +15,7 @@ export default function CardOrdem({ name, model, brand, place, id, status }) {
 
                     <p>{model}</p>
                     <p>{brand}</p>
-                    <p>{place}</p>
+                    <p>{plate}</p>
                     
                 </div>
                 

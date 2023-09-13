@@ -19,7 +19,7 @@ export default function UltimasOrdens() {
                         name={data.name}
                         model={data.model}
                         brand={data.brand}
-                        place={data.plate}
+                        plate={data.plate}
                         id={key}
                         status={data.status === 'paidout' ?  "Pago" : "Pendente"}
                         key={key}
