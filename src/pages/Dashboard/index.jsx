@@ -5,8 +5,11 @@ import UltimasOrdens from "../../components/UltimasOrdens"
 import ResumoFinanceiro from "../../components/ResumoFinanceiro"
         
 import "./style.css"
+import { OrderContext } from "../../contexts/Order";
 
 export default function Dashboard() {
+    const { orders } = useContext(OrderContext)
+
 
 
     return (
@@ -21,7 +24,7 @@ export default function Dashboard() {
                     gap: '10px'
                 }}>
                     <h2 className="titleOrdens">Últimas Ordens</h2>
-                    <UltimasOrdens/>
+                    <UltimasOrdens orders={orders}/>
                 </div>
                 <div>
                     <h2 className="titleResumoFinanceiro">Resumo Financeiro</h2>

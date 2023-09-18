@@ -4,9 +4,8 @@ import "./style.css"
 import { OrderContext } from "../../contexts/Order";
 import { useContext } from "react";
 
-export default function UltimasOrdens() {
+export default function UltimasOrdens({ orders, search = false }) {
 
-    const { orders } = useContext(OrderContext)
 
     return (
 
@@ -25,11 +24,10 @@ export default function UltimasOrdens() {
                         key={key}
                     />)
                         
-                }) : <p>Não há ordens!</p>
+                }) : search ? <p>Não há ordens com esse nome!</p> : <p>Não há ordens!</p>
             }
             
         </section>
-        
     )
     
 }

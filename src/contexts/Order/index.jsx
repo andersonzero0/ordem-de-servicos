@@ -5,6 +5,7 @@ export const OrderContext = createContext();
 
 export default function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
+  const [haveOrders, setHaveOrders] = useState(false);
   const [dataYears, setDataYears] = useState([]);
 
   async function getOrders() {
@@ -12,8 +13,11 @@ export default function OrderProvider({ children }) {
       const response = await api.get("/order");
 
       setOrders(response.data);
+
+      setHaveOrders(true);
     } catch (error) {
       console.log(error);
+      setHaveOrders(false);
     }
   }
 
@@ -33,6 +37,8 @@ export default function OrderProvider({ children }) {
   }, []);
 
   return (
-    <OrderContext.Provider value={{ orders, dataYears }}>{children}</OrderContext.Provider>
+    <OrderContext.Provider value={{ orders, dataYears, setOrders, haveOrders }}>
+      {children}
+    </OrderContext.Provider>
   );
 }
