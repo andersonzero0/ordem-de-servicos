@@ -1,33 +1,38 @@
 import { createContext, useEffect, useState } from "react";
 import { api } from "../../service/api";
 
-export const OrderContext = createContext()
+export const OrderContext = createContext();
 
 export default function OrderProvider({ children }) {
+  const [orders, setOrders] = useState([]);
+  const [dataYears, setDataYears] = useState([]);
 
-  const [orders, setOrders] = useState([])
+  async function getOrders() {
+    try {
+      const response = await api.get("/order");
+
+      setOrders(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getDataYears() {
+    try {
+      const response = await api.get("/order/years");
+
+      setDataYears(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
-
-    api
-    .get("/order")
-    .then((response) => {
-      
-      setOrders(response.data)
-
-    })
-    .catch((error) => {
-
-      console.log(error)
-      
-    })
-    
-  }, [])
+    getOrders();
+    getDataYears();
+  }, []);
 
   return (
-    <OrderContext.Provider value={{ orders }}>
-      { children }
-    </OrderContext.Provider>
-  )
-  
+    <OrderContext.Provider value={{ orders, dataYears }}>{children}</OrderContext.Provider>
+  );
 }
