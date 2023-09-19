@@ -1,11 +1,11 @@
 import "./style.css"
 
-export default function CardOrdem({ name, model, brand, plate, id, status }) {
+export default function CardOrdem({ name, model, brand, plate, id, status, onClick }) {
 
     
     return (
 
-        <div className="conteinerCard">
+        <div className="conteinerCard" onClick={onClick}>
 
             <div className="boxInfoCustomer">
 
