@@ -1,0 +1,14 @@
+@media screen and (max-width: 768px) {
+  .conteinerOrdens {
+
+    width: 95vw;
+
+    margin: auto;
+    height: 50vh;
+    
+  }
+
+  .boxPlus {
+    display: flex;
+  }
+}

@@ -1,0 +1,32 @@
+@media screen and (max-width: 768px) {
+  .headerDashboard {
+    width: 100vw;
+    height: 10vh;
+    padding: 10px;
+
+    background: #0E213E;
+    border-bottom: none;
+  }
+
+  .box_Logo {
+    height: 100%;
+  }
+
+  .logo {
+    height: 90%;
+  }
+
+  .buttonNewOrder {
+
+    display: none;
+    
+  }
+
+  .box_btnMenu {
+    display: block;
+  }
+
+  .boxBtnNewOrder {
+    display: none;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ButtonNew from "../ButtonNew";
 import "./style.css";
+import "./responsive.css"
 import { Dialog } from "primereact/dialog";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
@@ -11,6 +12,7 @@ import AdditionalRemarks from "../../components/FormOrdemServico/AdditionalRemar
 import Payment from "../../components/FormOrdemServico/Payment";
 import { api } from "../../service/api";
 import { Button } from "primereact/button";
+import { Link } from "react-router-dom";
 
 export default function HeaderDashboard() {
   const modelForm = {
@@ -61,6 +63,7 @@ export default function HeaderDashboard() {
   const [visible, setVisible] = useState(false);
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [concluded, setConcluded] = useState(false);
+  const [slideMenu, setSlideMenu] = useState(false)
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
@@ -113,11 +116,11 @@ export default function HeaderDashboard() {
   return (
     <>
       <header className="headerDashboard">
-        <div>
-          <img src="./Logo.svg" />
+        <div className="box_Logo">
+          <img className="logo" src="./Logo.svg" />
         </div>
 
-        <div>
+        <div className="boxBtnNewOrder">
           <ButtonNew
             title="Nova ordem"
             onClick={() => {
@@ -125,12 +128,45 @@ export default function HeaderDashboard() {
             }}
           />
         </div>
+
+        <div className="box_btnMenu" onClick={() => {
+          setSlideMenu(!slideMenu)
+        }}>
+          <img className="btn_menuHOff" src="./Menu_Hamburguer.svg" alt="" />
+        </div>
       </header>
 
+      <div className="boxMenuHover" style={slideMenu ? {
+        display: "block"
+      } : {
+        display: "none"
+      }}>
+        <Link className="linkMenu" to={"/dashboard"}>
+          <img src="./dashboard.svg" alt="" />
+          <p>Dashboard</p>
+        </Link>
+
+        <Link className="linkMenu" to={"/financeiro"}>
+          <img src="./attach_money.svg" alt="" />
+          <p>Financeiro</p>
+        </Link>
+
+        <Link className="linkMenu" to={"/arquivo"}>
+          <img src="./inventory.svg" alt="" />
+          <p>Arquivo</p>
+        </Link>
+      </div>
+
+      <div className="boxPlus" onClick={() => {
+        setVisible(true)
+      }}>
+        <img src="./PlusOutline.svg" alt="" />
+      </div>
+
       <Dialog
+      className="dialogModal"
         closable={false}
         header="ORDEM DE SERVIÇO"
-        style={{ width: "60vw" }}
         visible={visible}
       >
         {pageForm == 1 ? (
@@ -201,7 +237,6 @@ export default function HeaderDashboard() {
           pt={{
             headerTitle: { style: { color: "#D12727" } },
           }}
-          style={{ width: "30%" }}
         >
           <div className="conteinerAlert">
             <h3 className="alertMessage">
@@ -217,7 +252,7 @@ export default function HeaderDashboard() {
           </div>
         </Dialog>
 
-        <Dialog closable={false} visible={concluded} style={{ width: "30%" }}>
+        <Dialog closable={false} visible={concluded}>
           <div className="conteinerAlert">
             <h3 className="alertMessage">
               ORDEM DE SERVICO Nº XXXX CADASTRADA COM SUCESSO

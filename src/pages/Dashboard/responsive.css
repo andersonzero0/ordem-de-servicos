@@ -1,0 +1,15 @@
+@media screen and (max-width: 768px) {
+  .conteinerDashboard {
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    padding: 0 5px;
+    
+  }
+
+  .sectionDashboard {
+    padding: 0;
+    
+}
+}

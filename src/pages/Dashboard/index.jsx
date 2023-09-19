@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import HeaderDashboard from "../../components/HeaderDashboard"
 import UltimasOrdens from "../../components/UltimasOrdens"
 import ResumoFinanceiro from "../../components/ResumoFinanceiro"
         
 import "./style.css"
+import "./responsive.css"
 import { OrderContext } from "../../contexts/Order";
 
 export default function Dashboard() {

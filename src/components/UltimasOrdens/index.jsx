@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ButtonNew from "../ButtonNew";
 import { Dialog } from "primereact/dialog";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
@@ -12,6 +11,7 @@ import { api } from "../../service/api";
 import { Button } from "primereact/button";
 import CardOrdem from "../CardOrdem";
 import "./style.css";
+import "./responsive.css"
 
 export default function UltimasOrdens({ orders, search = false }) {
   let modelForm = {
