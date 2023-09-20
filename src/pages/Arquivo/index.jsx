@@ -4,9 +4,9 @@ import HeaderDashboard from "../../components/HeaderDashboard";
 import UltimasOrdens from "../../components/UltimasOrdens";
 import { OrderContext } from "../../contexts/Order";
 import Popover from "@mui/material/Popover";
-import Button from "@mui/material/Button";
 
 import "./style.css";
+import "./responsive.css"
 
 export default function Arquivo() {
   const { orders, haveOrders } = useContext(OrderContext);
@@ -79,7 +79,7 @@ export default function Arquivo() {
             </div>
           </div>
         ) : (
-          <>
+          <section className="conteinerArquivoMain">
             <div
               style={{
                 display: "flex",
@@ -236,7 +236,7 @@ export default function Arquivo() {
                 </div>
               </div>
             </div>
-          </>
+          </section>
         )}
       </div>
     </section>

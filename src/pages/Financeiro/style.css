@@ -4,3 +4,15 @@
     padding: 0 2%;
     
 }
+
+.conteinerFinanceiro {
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: 10px;
+
+    padding: 20px 5px 0 5px;
+    
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Charts from "../../components/Charts";
 import HeaderDashboard from "../../components/HeaderDashboard";
 import "./style.css"
+import "./responsive.css"
 import CardResumo from "../../components/CardResumo";
 
 export default function Financeiro() {
@@ -17,7 +18,7 @@ export default function Financeiro() {
 
             <HeaderDashboard setVisible={() => setVisible(!visible)}/>
 
-            <div className="conteinerDashboard">
+            <div className="conteinerFinanceiro">
                 <div>
                     <h2 className="titleResumoFinanceiro">Financeiro</h2>
                     <CardResumo totalMes={ordem.valorTotal} totalServicos={ordem.totalService}/>

@@ -1,0 +1,24 @@
+@media screen and (max-width: 768px) {
+  .sectionArquivos {
+    padding: 0;
+  }
+
+  .conteinerArquivoMain {
+
+    display: flex;
+    flex-flow: column-reverse;
+    gap: 10px;
+    margin: 10px 0;
+    
+  }
+
+  .conteinerOrganize > div {
+    flex-flow: row nowrap;
+  }
+
+  .conteinerOrganize {
+    background-color: transparent;
+
+    border-bottom: 2px solid #0E213E;
+  }
+}

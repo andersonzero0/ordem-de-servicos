@@ -155,7 +155,6 @@ export default function UltimasOrdens({ orders, search = false }) {
       <Dialog
         closable={false}
         header="ORDEM DE SERVIÇO"
-        style={{ width: "60vw" }}
         visible={visible}
       >
         {pageForm == 1 ? (
@@ -226,7 +225,6 @@ export default function UltimasOrdens({ orders, search = false }) {
           pt={{
             headerTitle: { style: { color: "#D12727" } },
           }}
-          style={{ width: "30%" }}
         >
           <div className="conteinerAlert">
             <h3 className="alertMessage">
@@ -242,7 +240,7 @@ export default function UltimasOrdens({ orders, search = false }) {
           </div>
         </Dialog>
 
-        <Dialog closable={false} visible={concluded} style={{ width: "30%" }}>
+        <Dialog closable={false} visible={concluded}>
           <div className="conteinerAlert">
             <h3 className="alertMessage">
               ORDEM DE SERVICO Nº XXXX CADASTRADA COM SUCESSO

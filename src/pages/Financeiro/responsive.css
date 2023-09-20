@@ -1,0 +1,18 @@
+@media screen and (max-width: 768px) {
+  .sectionFinanceiro {
+
+    padding: 0;
+    
+  }
+  .conteinerFinanceiro {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: start;
+
+    padding-top: 10px;
+
+    
+}
+}

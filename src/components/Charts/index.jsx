@@ -51,7 +51,7 @@ export default function Charts({ setMonth }) {
 
   return (
     <div className="conteinerCharts">
-      <BarChart width={650} height={400} data={ageSelected.dataMes}>
+      <BarChart width={window.screen.width > 769 ? 650 : 350} height={window.screen.width > 769 ? 400 : 320} data={ageSelected.dataMes}>
         <Bar
           dataKey="valorTotal"
           onClick={handleClick}
