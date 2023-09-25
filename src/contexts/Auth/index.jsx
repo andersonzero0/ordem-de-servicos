@@ -6,7 +6,7 @@ import { api } from "../../service/api.js";
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [token, setToken] = useState('null');
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
   const notify = () =>
     toast.error("Confira se os dados estão corretos!", {

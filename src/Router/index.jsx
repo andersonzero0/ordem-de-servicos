@@ -29,19 +29,15 @@ export default function Router() {
 
   return (
     <Routes>
-      {true ? (
-        <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/financeiro" element={<Financeiro />} />
-          <Route path="/arquivo" element={<Arquivo />} />
-          <Route path="*" element={<Navigate replace to="/dashboard" />} />
-        </Route>
-      ) : (
-        <>
-          <Route path="/" element={<Login />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
-        </>
-      )}
+      <Route element={<Layout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/financeiro" element={<Financeiro />} />
+        <Route path="/arquivo" element={<Arquivo />} />
+        <Route path="*" element={<Navigate replace to="/dashboard" />} />
+      </Route>
+
+      <Route path="/" element={<Login />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 }
