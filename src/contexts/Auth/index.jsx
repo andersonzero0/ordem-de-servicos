@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState, createContext, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
+import { api } from "../../service/api.js"
 
 export const AuthContext = createContext();
 
@@ -33,7 +33,7 @@ function AuthProvider({ children }) {
     try {
       setLoading(true);
 
-      const { data } = await axios.post("http://localhost:3000/auth", form);
+      const { data } = await api.post("/auth", form);
 
       setToken(data.access_token);
 
