@@ -29,7 +29,7 @@ export default function Router() {
 
   return (
     <Routes>
-      {token ? (
+      {true ? (
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/financeiro" element={<Financeiro />} />
