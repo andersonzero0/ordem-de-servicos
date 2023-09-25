@@ -29,7 +29,7 @@ function AuthProvider({ children }) {
       setToken(cookies.token);
     }
     setLoading(false);
-  });
+  }, []);
 
   async function login(form) {
     try {
