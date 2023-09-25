@@ -27,7 +27,15 @@ export default function Router() {
     );
   }
 
-  console.log(token)
+  if(!token) {
+
+    console.log("false")
+    
+  } else if (token) {
+
+    console.log("true")
+    
+  }
 
   return (
     // <Routes>
