@@ -37,7 +37,9 @@ function AuthProvider({ children }) {
 
       setToken(data.access_token);
 
-      setCookie("token", data.access_token);
+      setCookie("token", data.access_token, {
+        expires: new Date(Date.now() + 31536000)
+      });
     } catch (error) {
       notify();
     } finally {
