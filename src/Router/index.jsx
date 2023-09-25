@@ -41,7 +41,7 @@ export default function Router() {
           <Route path="/" element={<Login />} />
         </>
       )}
-      <Route path="*" element={<Navigate replace to="dashboard" />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 }
