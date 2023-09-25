@@ -65,10 +65,10 @@ export default function Router() {
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     ) : (
-      <>
+      <Routes>
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Navigate replace to="/" />} />
-      </>
+      </Routes>
     )
   );
 }
