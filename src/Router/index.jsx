@@ -7,9 +7,10 @@ import Arquivo from "../pages/Arquivo";
 import Login from "../components/Login";
 import { useContext } from "react";
 import { Loader } from "lucide-react";
+import Cookies from "js-cookie";
 
 export default function Router() {
-  const { token, loading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
 
   if (loading) {
     return (
@@ -25,7 +26,7 @@ export default function Router() {
     );
   }
 
-  console.log(token);
+  const token = Cookies.get('token')
 
   return (
     <Routes>
