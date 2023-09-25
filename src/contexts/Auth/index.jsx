@@ -23,7 +23,9 @@ function AuthProvider({ children }) {
     });
 
   useEffect(() => {
+
     if (cookies.token) {
+      console.log(cookies.token)
       setToken(cookies.token);
     }
     setLoading(false);
