@@ -6,7 +6,7 @@ import { api } from "../../service/api.js";
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies('token');
 
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
       setLoading(false);
     };
     checkToken();
-  }, []);
+  }, [cookies]);
 
   async function login(form) {
     try {
