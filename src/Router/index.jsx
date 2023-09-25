@@ -27,16 +27,6 @@ export default function Router() {
     );
   }
 
-  if(!token) {
-
-    console.log("false")
-    
-  } else if (token) {
-
-    console.log("true")
-    
-  }
-
   return (
     // <Routes>
     //   {token ? (
