@@ -14,19 +14,21 @@ export default function Router() {
 
   if (loading) {
     return (
-      <div style={{
-        display: "flex",
-        width: "100%",
-        height: "100vh",
-        justifyContent: "center",
-        alignItems: "center"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Loader />
       </div>
     );
   }
 
-  const token = Cookies.get('token')
+  const token = Cookies.get("token");
 
   return (
     <Routes>
@@ -38,7 +40,12 @@ export default function Router() {
           <Route path="/arquivo" element={<Arquivo />} />
         </Route>
       ) : (
-        <Route path="/" element={<Login />} />
+        <>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<></>} />
+          <Route path="/financeiro" element={<></>} />
+          <Route path="/arquivo" element={<></>} />
+        </>
       )}
       <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
