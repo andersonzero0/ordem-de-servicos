@@ -42,9 +42,6 @@ export default function Router() {
       ) : (
         <>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<></>} />
-          <Route path="/financeiro" element={<></>} />
-          <Route path="/arquivo" element={<></>} />
         </>
       )}
       <Route path="*" element={<Navigate replace to="/" />} />
