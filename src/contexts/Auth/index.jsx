@@ -25,6 +25,7 @@ function AuthProvider({ children }) {
     const checkToken = () => {
       const token = Cookies.get('token')
       if (token) {
+        console.log(token);
         setToken(token);
       }
       setLoading(false);
