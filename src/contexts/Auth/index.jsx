@@ -22,7 +22,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const checkToken = async () => {
-      const token = await Cookies.get('token')
+      const token = Cookies.get('token')
       if (token) {
         console.log(token);
         setToken(token);
