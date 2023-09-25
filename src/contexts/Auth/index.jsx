@@ -6,7 +6,7 @@ import { api } from "../../service/api.js";
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [token, setToken] = useState(0);
+  const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);
   const notify = () =>
     toast.error("Confira se os dados estão corretos!", {
@@ -40,9 +40,7 @@ function AuthProvider({ children }) {
 
       setToken(data.access_token);
 
-      setCookie("token", data.access_token, {
-        expires: new Date(Date.now() + 31536000),
-      });
+      Cookies.set('token', data, { expires: 7 })
     } catch (error) {
       notify();
     } finally {
