@@ -28,37 +28,18 @@ export default function Router() {
   }
 
   return (
-    // <Routes>
-    //   {token ? (
-    //     <Route element={<Layout />}>
-    //       <Route path="/" element={<Dashboard />} />
-    //       <Route path="/dashboard" element={<Dashboard />} />
-    //       <Route path="/financeiro" element={<Financeiro />} />
-    //       <Route path="/arquivo" element={<Arquivo />} />
-    //     </Route>
-    //   ) : (
-    //     <>
-    //       <Route path="/" element={<Login />} />
-    //     </>
-    //   )}
-    //   <Route path="*" element={<Navigate replace to="/" />} />
-    // </Routes>
-
-    token ? (
-      <Routes>
+    <Routes>
+      {token ? (
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/financeiro" element={<Financeiro />} />
           <Route path="/arquivo" element={<Arquivo />} />
         </Route>
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
-    ) : (
-      <Routes>
+      ) : (
         <Route path="/" element={<Login />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
-    )
+      )}
+      <Route path="*" element={<Navigate replace to="/" />} />
+    </Routes>
   );
 }
