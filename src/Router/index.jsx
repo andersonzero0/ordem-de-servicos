@@ -30,7 +30,7 @@ export default function Router() {
   return (
     <Routes>
       {token ? (
-        <Route element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/financeiro" element={<Financeiro />} />
           <Route path="/arquivo" element={<Arquivo />} />
