@@ -31,10 +31,9 @@ export default function Router() {
     <Routes>
       {token ? (
         <Route path="/" element={<Layout />}>
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
           <Route path="financeiro" element={<Financeiro />} />
           <Route path="arquivo" element={<Arquivo />} />
-          <Route path="*" element={<Navigate replace to="dashboard" />} />
         </Route>
       ) : (
         <>
