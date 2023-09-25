@@ -29,15 +29,19 @@ export default function Router() {
 
   return (
     <Routes>
-      <Route element={<Layout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/financeiro" element={<Financeiro />} />
-        <Route path="/arquivo" element={<Arquivo />} />
-        <Route path="*" element={<Navigate replace to="/dashboard" />} />
-      </Route>
-
-      <Route path="/" element={<Login />} />
-      <Route path="*" element={<Navigate replace to="/" />} />
+      {token ? (
+        <Route path="/" element={<Layout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="financeiro" element={<Financeiro />} />
+          <Route path="arquivo" element={<Arquivo />} />
+          <Route path="*" element={<Navigate replace to="dashboard" />} />
+        </Route>
+      ) : (
+        <>
+          <Route path="/" element={<Login />} />
+        </>
+      )}
+      <Route path="*" element={<Navigate replace to="dashboard" />} />
     </Routes>
   );
 }
