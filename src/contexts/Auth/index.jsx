@@ -1,13 +1,11 @@
 import { useState, createContext, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { api } from "../../service/api.js";
 
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [cookies, setCookie, removeCookie] = useCookies('token');
-
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
   const notify = () =>
@@ -24,14 +22,15 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const checkToken = async () => {
-      if (cookies.token) {
-        console.log(cookies.token);
-        setToken(cookies.token);
+      const token = await Cookies.get('token')
+      if (token) {
+        console.log(token);
+        setToken(token);
       }
       setLoading(false);
     };
     checkToken();
-  }, [cookies]);
+  }, []);
 
   async function login(form) {
     try {
