@@ -148,7 +148,7 @@ export default function HeaderDashboard() {
         </div>
       </header>
 
-      <div className="boxMenuHover" style={slideMenu ? {
+      <div className="boxMenuHover" style={slideMenu || window.innerWidth < 768 ? {
         display: "block"
       } : {
         display: "none"
@@ -180,6 +180,9 @@ export default function HeaderDashboard() {
         closable={false}
         header="ORDEM DE SERVIÇO"
         visible={visible}
+        style={{
+          zIndex: 9999
+        }}
       >
         {pageForm == 1 ? (
           <InfoClient

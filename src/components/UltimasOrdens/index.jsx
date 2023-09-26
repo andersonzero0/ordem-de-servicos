@@ -170,6 +170,9 @@ export default function UltimasOrdens({ orders, search = false }) {
         closable={false}
         header="ORDEM DE SERVIÇO"
         visible={visible}
+        style={{
+          zIndex: 9999
+        }}
       >
         {pageForm == 1 ? (
           <InfoClient
