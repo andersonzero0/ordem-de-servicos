@@ -148,7 +148,7 @@ export default function HeaderDashboard() {
         </div>
       </header>
 
-      <div className="boxMenuHover" style={slideMenu || window.innerWidth < 768 ? {
+      <div className="boxMenuHover" style={slideMenu ? {
         display: "block"
       } : {
         display: "none"
