@@ -34,7 +34,7 @@ export default function OrderProvider({ children }) {
   useEffect(() => {
     getOrders();
     getDataYears();
-  }, []);
+  });
 
   return (
     <OrderContext.Provider value={{ orders, dataYears, setOrders, haveOrders }}>
