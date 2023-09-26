@@ -60,7 +60,7 @@ export default function Arquivo() {
     <section className="sectionArquivos">
       <HeaderDashboard setVisible={() => setVisible(!visible)} />
 
-      <div className="conteinerDashboard">
+      <div>
         {!haveOrders ? (
           <div
             style={{

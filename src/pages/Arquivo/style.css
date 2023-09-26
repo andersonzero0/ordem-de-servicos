@@ -5,6 +5,15 @@
     
 }
 
+.conteinerArquivoMain {
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: start;
+    padding-top: 20px;
+}
+
 .conteinerNãoEncontrado {
 
     font-size: 1.2rem;
