@@ -14,6 +14,9 @@ import { api } from "../../service/api";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import { OrderContext } from "../../contexts/Order";
+import { LogOut } from "lucide-react";
+import { AuthContext } from "../../contexts/Auth";
+import Cookies from "js-cookie";
 
 export default function HeaderDashboard() {
   const modelForm = {
@@ -66,6 +69,7 @@ export default function HeaderDashboard() {
   const [concluded, setConcluded] = useState(false);
   const [slideMenu, setSlideMenu] = useState(false)
   const { setRefresh, refresh } = useContext(OrderContext)
+  const { setToken } = useContext(AuthContext)
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
@@ -132,13 +136,24 @@ export default function HeaderDashboard() {
           <img className="logo" src="./Logo.svg" />
         </div>
 
-        <div className="boxBtnNewOrder">
-          <ButtonNew
-            title="Nova ordem"
-            onClick={() => {
-              setVisible(true);
-            }}
-          />
+        <div className="boxOptHeader">
+          <div className="boxBtnNewOrder">
+            <ButtonNew
+              title="Nova ordem"
+              onClick={() => {
+                setVisible(true);
+              }}
+            />
+          </div>
+
+          <LogOut size={30} color="red" style={{
+            cursor: "pointer"
+          }} onClick={() => {
+            
+            Cookies.remove('token')
+            setToken(null)
+            
+          }} />
         </div>
 
         <div className="box_btnMenu" onClick={() => {
@@ -166,6 +181,17 @@ export default function HeaderDashboard() {
         <Link className="linkMenu" to={"/arquivo"}>
           <img src="./inventory.svg" alt="" />
           <p>Arquivo</p>
+        </Link>
+
+        <Link className="linkMenu" to="#">
+        <LogOut size={30} color="red" style={{
+              cursor: "pointer"
+            }} onClick={() => {
+          
+              Cookies.remove('token')
+              setToken(null)
+          
+            }} />
         </Link>
       </div>
 

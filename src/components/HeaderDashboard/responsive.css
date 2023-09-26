@@ -29,4 +29,8 @@
   .boxBtnNewOrder {
     display: none;
   }
+
+  .boxOptHeader {
+    display: none;
+  }
 }
