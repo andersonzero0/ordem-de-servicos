@@ -68,6 +68,9 @@ export default function HeaderDashboard() {
   const [titleButtom, setTitleButton] = useState("Continuar");
 
   const [pageForm, setPageForm] = useState(1);
+  const [idOrder, setIdOrder] = useState("")
+
+  const [loading, setLoading] = useState(false)
 
   function paginationForm() {
     if (pageForm == 1) {
@@ -101,13 +104,19 @@ export default function HeaderDashboard() {
 
     if (pageForm == 6) {
 
+      setLoading(true)
+
       api
         .post("/order", dataForm)
         .then((response) => {
-          console.log(response.data);
+          const id = response.data.id
+          
+          setIdOrder(id.substring(0, 8))
           setConcluded(true);
+          setLoading(false)
         })
         .catch((error) => {
+          setLoading(false)
           console.log(error.response);
         });
     }
@@ -255,7 +264,7 @@ export default function HeaderDashboard() {
         <Dialog closable={false} visible={concluded}>
           <div className="conteinerAlert">
             <h3 className="alertMessage">
-              ORDEM DE SERVICO Nº XXXX CADASTRADA COM SUCESSO
+              {`ORDEM DE SERVICO Nº${idOrder} CADASTRADA COM SUCESSO`}
             </h3>
             <Button
               onClick={() => {
@@ -285,8 +294,9 @@ export default function HeaderDashboard() {
           />
 
           <Button
+            disabled={loading}
             label={titleButtom}
-            icon="pi pi-arrow-right"
+            icon={loading ? "pi pi-spinner" : "pi pi-arrow-right"}
             severity="info"
             iconPos="right"
             onClick={paginationForm}

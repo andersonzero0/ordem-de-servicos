@@ -63,10 +63,13 @@ export default function UltimasOrdens({ orders, search = false }) {
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [concluded, setConcluded] = useState(false);
   const [id, setId] = useState(0)
+  const [idOrder, setIdOrder] = useState("")
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
   const [pageForm, setPageForm] = useState(1);
+
+  const [loading, setLoading] = useState(false)
 
   function paginationForm() {
     if (pageForm == 1) {
@@ -99,13 +102,21 @@ export default function UltimasOrdens({ orders, search = false }) {
     }
 
     if (pageForm == 6) {
+      setLoading(true)
+      
       api
         .put(`/order/${id}`, dataForm)
         .then((response) => {
+
+          const id = response.data.id
+          
+          setIdOrder(id.substring(0, 8))
           setConcluded(true);
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error.response);
+          setLoading(false)
         });
     }
   }
@@ -135,7 +146,7 @@ export default function UltimasOrdens({ orders, search = false }) {
                 model={data.model}
                 brand={data.brand}
                 plate={data.plate}
-                id={key}
+                id={data.id.substring(0, 8)}
                 status={data.status === "paidout" ? "Pago" : "Pendente"}
                 key={key}
                 onClick={() => {
@@ -243,7 +254,9 @@ export default function UltimasOrdens({ orders, search = false }) {
         <Dialog closable={false} visible={concluded}>
           <div className="conteinerAlert">
             <h3 className="alertMessage">
-              ORDEM DE SERVICO Nº XXXX CADASTRADA COM SUCESSO
+              {
+              `ORDEM DE SERVICO Nº${idOrder} CADASTRADA COM SUCESSO`
+              }
             </h3>
             <Button
               onClick={() => {
@@ -274,7 +287,8 @@ export default function UltimasOrdens({ orders, search = false }) {
 
           <Button
             label={titleButtom}
-            icon="pi pi-arrow-right"
+            disabled={loading}
+            icon={loading ? "pi pi-spinner" : "pi pi-arrow-right"}
             severity="info"
             iconPos="right"
             onClick={paginationForm}
