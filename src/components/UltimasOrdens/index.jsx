@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Dialog } from "primereact/dialog";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
@@ -12,6 +12,7 @@ import { Button } from "primereact/button";
 import CardOrdem from "../CardOrdem";
 import "./style.css";
 import "./responsive.css"
+import { OrderContext } from "../../contexts/Order";
 
 export default function UltimasOrdens({ orders, search = false }) {
   let modelForm = {
@@ -58,6 +59,7 @@ export default function UltimasOrdens({ orders, search = false }) {
   };
 
   const [dataForm, setDataForm] = useState(modelForm);
+  const { refresh, setRefresh } = useContext(OrderContext)
 
   const [visible, setVisible] = useState(false);
   const [visibleAlert, setVisibleAlert] = useState(false);
@@ -113,6 +115,7 @@ export default function UltimasOrdens({ orders, search = false }) {
           setIdOrder(id.substring(0, 8))
           setConcluded(true);
           setLoading(false)
+          setRefresh(!refresh)
         })
         .catch((error) => {
           console.log(error.response);

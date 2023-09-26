@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ButtonNew from "../ButtonNew";
 import "./style.css";
 import "./responsive.css"
@@ -13,6 +13,7 @@ import Payment from "../../components/FormOrdemServico/Payment";
 import { api } from "../../service/api";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
+import { OrderContext } from "../../contexts/Order";
 
 export default function HeaderDashboard() {
   const modelForm = {
@@ -64,6 +65,7 @@ export default function HeaderDashboard() {
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [concluded, setConcluded] = useState(false);
   const [slideMenu, setSlideMenu] = useState(false)
+  const { setRefresh, refresh } = useContext(OrderContext)
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
@@ -114,6 +116,7 @@ export default function HeaderDashboard() {
           setIdOrder(id.substring(0, 8))
           setConcluded(true);
           setLoading(false)
+          setRefresh(!refresh)
         })
         .catch((error) => {
           setLoading(false)

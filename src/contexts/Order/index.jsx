@@ -6,6 +6,7 @@ export const OrderContext = createContext();
 export default function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
   const [haveOrders, setHaveOrders] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [dataYears, setDataYears] = useState([]);
 
   async function getOrders() {
@@ -34,10 +35,10 @@ export default function OrderProvider({ children }) {
   useEffect(() => {
     getOrders();
     getDataYears();
-  }, []);
+  }, [refresh]);
 
   return (
-    <OrderContext.Provider value={{ orders, dataYears, setOrders, haveOrders }}>
+    <OrderContext.Provider value={{ orders, dataYears, setOrders, haveOrders, refresh, setRefresh }}>
       {children}
     </OrderContext.Provider>
   );
