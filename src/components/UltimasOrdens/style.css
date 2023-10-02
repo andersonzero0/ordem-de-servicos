@@ -20,3 +20,15 @@
     padding-bottom: 16px;
     
 }
+
+.titlePDF {
+
+    font-size: 20px;
+    width: 600px;
+    text-align: center;
+    
+}
+
+.labelPDF {
+    width: 500px;
+}

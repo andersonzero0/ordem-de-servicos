@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import { useState } from "react";
 import { api } from "../../service/api";
 import { OrderContext } from "../../contexts/Order";
+import { CircularProgress } from "@mui/material";
 
 export default function CardOrdem({
   name,
@@ -21,22 +22,18 @@ export default function CardOrdem({
   const [loading, setLoading] = useState(false);
 
   async function handleDelete() {
+    setLoading(true);
 
-    setLoading(true)
-    
     try {
-        api.delete(`/order/${id}`).then((response) => {
-            
-            setVisible(false)
-            
-        })
-        
-    } catch(error) {
+      api.delete(`/order/${id}`).then((response) => {
+        setVisible(false);
 
-        return error
-        
+        setRefresh(!refresh);
+      });
+    } catch (error) {
+      return error;
     } finally {
-        setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -62,9 +59,10 @@ export default function CardOrdem({
             />
             <Button
               onClick={() => {
-                handleDelete()
+                handleDelete();
               }}
-              label="DELETAR"
+              disabled={loading}
+              label={loading ? <CircularProgress /> : "DELETAR"}
               severity="danger"
             />
           </div>
