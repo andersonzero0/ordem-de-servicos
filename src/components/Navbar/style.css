@@ -60,3 +60,10 @@
     background-color: #071934;
     
 }
+
+.btnLogOut {
+
+    position: fixed;
+    bottom: 10px;
+    
+}

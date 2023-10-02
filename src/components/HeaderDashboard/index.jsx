@@ -145,15 +145,6 @@ export default function HeaderDashboard() {
               }}
             />
           </div>
-
-          <LogOut size={30} color="red" style={{
-            cursor: "pointer"
-          }} onClick={() => {
-            
-            Cookies.remove('token')
-            setToken(null)
-            
-          }} />
         </div>
 
         <div className="box_btnMenu" onClick={() => {
@@ -207,7 +198,8 @@ export default function HeaderDashboard() {
         header="ORDEM DE SERVIÇO"
         visible={visible}
         style={{
-          zIndex: 9999
+          zIndex: 999999,
+          minWidth: "60vw"
         }}
       >
         {pageForm == 1 ? (

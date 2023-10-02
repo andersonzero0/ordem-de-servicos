@@ -13,6 +13,7 @@ import CardOrdem from "../CardOrdem";
 import "./style.css";
 import "./responsive.css"
 import { OrderContext } from "../../contexts/Order";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 export default function UltimasOrdens({ orders, search = false }) {
   let modelForm = {
@@ -66,6 +67,14 @@ export default function UltimasOrdens({ orders, search = false }) {
   const [concluded, setConcluded] = useState(false);
   const [id, setId] = useState(0)
   const [idOrder, setIdOrder] = useState("")
+
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
@@ -125,14 +134,24 @@ export default function UltimasOrdens({ orders, search = false }) {
   }
 
   useEffect(() => {
+    if(id == 0) {
+      return
+    }
+    
+    handleOpen()
 
     api.get(`/order/${id}`).then((response) => {
 
         if(response.data == undefined) {
+
+          handleClose()
+          
             return
         }
 
         setDataForm(response.data)
+        handleClose()
+        setVisible(true)
         
     })
     
@@ -140,6 +159,12 @@ export default function UltimasOrdens({ orders, search = false }) {
 
   return (
     <>
+    <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <section className="conteinerOrdens">
         {orders.length != 0 ? (
           orders.map((data, key) => {
@@ -154,7 +179,6 @@ export default function UltimasOrdens({ orders, search = false }) {
                 key={key}
                 onClick={() => {
                     setId(data.id)
-                    setVisible(true)
                 }}
               />
             );
@@ -171,7 +195,8 @@ export default function UltimasOrdens({ orders, search = false }) {
         header="ORDEM DE SERVIÇO"
         visible={visible}
         style={{
-          zIndex: 9999
+          zIndex: 999999,
+          minWidth: "60vw"
         }}
       >
         {pageForm == 1 ? (

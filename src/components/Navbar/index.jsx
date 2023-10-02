@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import "./responsive.css"
+import { LogOut } from "lucide-react";
+import { AuthContext } from "../../contexts/Auth";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
+  const { setToken } = useContext(AuthContext)
+  
   return (
     <nav className="navbar">
       <Link className="link" to={"/dashboard"}>
@@ -28,6 +34,15 @@ export default function Navbar() {
             <p>Arquivo</p>
         </div>
       </Link>
+
+      <LogOut className="btnLogOut" size={30} color="red" style={{
+            cursor: "pointer"
+          }} onClick={() => {
+            
+            Cookies.remove('token')
+            setToken(null)
+            
+      }} />
     </nav>
   );
 }
