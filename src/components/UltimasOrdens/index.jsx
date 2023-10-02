@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Dialog } from "primereact/dialog";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
@@ -52,10 +52,11 @@ export default function UltimasOrdens({ orders, search = false }) {
     add_observation: "",
     extra_observation: "",
 
-    total_price: "",
-    discount: "",
-    payment_method: "",
-    total_payable: "",
+    total_price: 0,
+    discount: 0,
+    payment_method: 0,
+    total_payable: 0,
+    create_at: new Date(Date.now()).toISOString().slice(0, 16),
     status: "pending",
   };
 
@@ -150,6 +151,8 @@ export default function UltimasOrdens({ orders, search = false }) {
             return
         }
 
+        setId(id)
+
         setDataForm(response.data)
         handleClose()
         setVisible(true)
@@ -175,7 +178,7 @@ export default function UltimasOrdens({ orders, search = false }) {
                 model={data.model}
                 brand={data.brand}
                 plate={data.plate}
-                id={data.id.substring(0, 8)}
+                id={data.id}
                 status={data.status === "paidout" ? "Pago" : "Pendente"}
                 key={key}
                 onClick={() => {
@@ -287,7 +290,7 @@ export default function UltimasOrdens({ orders, search = false }) {
           <div className="conteinerAlert">
             <h3 className="alertMessage">
               {
-              `ORDEM DE SERVICO Nº${idOrder} CADASTRADA COM SUCESSO`
+              `ORDEM DE SERVIÇO Nº${idOrder} ATUALIZADO COM SUCESSO`
               }
             </h3>
             <Button

@@ -17,6 +17,8 @@ export default function Charts({ setMonth }) {
   
   const handleClick = useCallback(
     (entry, index) => {
+      console.log(entry)
+      
       setMonth(entry);
       setActiveIndex(index);
     },

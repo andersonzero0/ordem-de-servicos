@@ -6,13 +6,22 @@ import { OrderContext } from "../../contexts/Order";
 export default function ResumoFinanceiro() {
   const { orders } = useContext(OrderContext);
 
-  const valueTotal = orders.reduce((acc, value) => {
-    return acc + Number(value.total_payable);
-  }, 0);
+const valueTotal = orders.reduce((acc, value) => {
+  if(value.status == "paidout") {
+
+    acc.pago += Number(value.total_payable)
+    
+  } else {
+
+    acc.pendente += Number(value.total_payable)
+  }
+
+  return acc;
+}, { pago: 0, pendente: 0 });
 
   return (
     <div>
-      <CardResumo totalMes={valueTotal} totalServicos={orders.length} />
+      <CardResumo totalMesPago={valueTotal.pago} totalMesPendente={valueTotal.pendente} totalServicos={orders.length} />
     </div>
   );
 }

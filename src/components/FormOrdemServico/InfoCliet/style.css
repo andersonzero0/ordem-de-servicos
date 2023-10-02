@@ -52,3 +52,15 @@ legend {
     color: #0E213E;
     
 }
+
+.dateCreate {
+    height: 35px;
+    
+}
+
+.labelDateCreate {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

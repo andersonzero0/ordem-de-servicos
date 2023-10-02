@@ -55,10 +55,11 @@ export default function HeaderDashboard() {
     add_observation: "",
     extra_observation: "",
 
-    total_price: "",
-    discount: "",
-    payment_method: "",
-    total_payable: "",
+    total_price: 0,
+    discount: 0,
+    payment_method: 0,
+    total_payable: 0,
+    create_at: new Date(Date.now()).toISOString().slice(0, 16),
     status: "pending",
   };
 

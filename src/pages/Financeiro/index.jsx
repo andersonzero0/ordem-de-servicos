@@ -10,7 +10,8 @@ export default function Financeiro() {
   const [ordem, setOrdem] = useState({
     name: "",
     totalService: "0",
-    valorTotal: "0"
+    valorTotalPago: "0",
+    valorTotalPendente: "0"
   })
 
     return (
@@ -21,7 +22,7 @@ export default function Financeiro() {
             <div className="conteinerFinanceiro">
                 <div>
                     <h2 className="titleResumoFinanceiro">Financeiro</h2>
-                    <CardResumo totalMes={ordem.valorTotal} totalServicos={ordem.totalService}/>
+                    <CardResumo totalMesPago={ordem.valorTotalPago} totalMesPendente={ordem.valorTotalPendente} totalServicos={ordem.totalService}/>
                 </div>
                 
                 <Charts setMonth={(param) => setOrdem(param)}/>

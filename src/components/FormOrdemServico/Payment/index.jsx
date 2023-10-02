@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { InputSwitch } from 'primereact/inputswitch';
 
@@ -7,6 +7,16 @@ import "./style.css"
 export default function Payment({ setForm, data }) {
 
     const [checked, setChecked] = useState(false);
+
+    useEffect(() => {
+
+        if(data.status == "paidout") {
+
+            setChecked(true)
+            
+        }
+        
+    })
 
     return (
         <form className="form">
