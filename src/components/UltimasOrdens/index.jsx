@@ -133,7 +133,8 @@ export default function UltimasOrdens({ orders, search = false }) {
     }
   }
 
-  useEffect(() => {
+  async function handleOrder(id) {
+
     if(id == 0) {
       return
     }
@@ -155,7 +156,7 @@ export default function UltimasOrdens({ orders, search = false }) {
         
     })
     
-  }, [id])
+  }
 
   return (
     <>
@@ -178,7 +179,7 @@ export default function UltimasOrdens({ orders, search = false }) {
                 status={data.status === "paidout" ? "Pago" : "Pendente"}
                 key={key}
                 onClick={() => {
-                    setId(data.id)
+                    handleOrder(data.id)
                 }}
               />
             );
