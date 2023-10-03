@@ -11,4 +11,26 @@
   .boxPlus {
     display: flex;
   }
+
+  .footerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rootBtnResp {
+    display: none !important;
+  }
+
+  .boxOptResp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .labelBtnResp {
+
+    font-size: 12px;
+    
+  }
 }

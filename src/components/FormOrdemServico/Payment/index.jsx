@@ -3,6 +3,7 @@ import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextFie
 import { InputSwitch } from 'primereact/inputswitch';
 
 import "./style.css"
+import "./responsive.css"
 
 export default function Payment({ setForm, data }) {
 

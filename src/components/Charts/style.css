@@ -4,5 +4,12 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+
+    width: 100%;
     
+}
+
+.test {
+    width: 100%px;
+    overflow: auto;
 }

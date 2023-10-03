@@ -1,0 +1,9 @@
+@media screen and (max-width: 768px) {
+  .conteinerSwitch {
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+}

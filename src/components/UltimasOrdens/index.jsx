@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { Dialog } from "primereact/dialog";
 import jsPDF from "jspdf";
 import ReactDOMServer from "react-dom/server";
@@ -125,7 +125,7 @@ export default function UltimasOrdens({ orders, search = false }) {
 
           setIdOrder(id.substring(0, 8));
           setConcluded(true);
-          setPageForm(1)
+          setPageForm(1);
           setLoading(false);
           setRefresh(!refresh);
         })
@@ -163,7 +163,7 @@ export default function UltimasOrdens({ orders, search = false }) {
       style={{
         boxSizing: "border-box",
         width: "190mm",
-        fontSize: "4mm"
+        fontSize: "4mm",
       }}
     >
       <h1 className="titlePDF">ORDEM DE SERVIÇOS</h1>
@@ -184,9 +184,7 @@ export default function UltimasOrdens({ orders, search = false }) {
           Celular: {dataForm.phone || "Não preenchido"}
         </p>
         <p className="labelPDF">Email: {dataForm.email || "Não preenchido"}</p>
-        <p className="labelPDF">
-          Orçamento: {dataForm.budget ? "Sim" : "Não"}
-        </p>
+        <p className="labelPDF">Orçamento: {dataForm.budget ? "Sim" : "Não"}</p>
       </div>
 
       <hr
@@ -303,14 +301,16 @@ export default function UltimasOrdens({ orders, search = false }) {
           Total pago: R${dataForm.total_payable || "Não preenchido"}
         </p>
 
-        <p className="labelPDF">Status: {dataForm.status == "paidout" ? "Pago" : "Pendente"}</p>
+        <p className="labelPDF">
+          Status: {dataForm.status == "paidout" ? "Pago" : "Pendente"}
+        </p>
       </div>
     </html>
   );
 
   const options = {
     orientation: "portrait",
-    format: "a4"
+    format: "a4",
   };
 
   const handleExportPDF = async () => {
@@ -326,6 +326,20 @@ export default function UltimasOrdens({ orders, search = false }) {
       },
     });
   };
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  });
 
   return (
     <>
@@ -361,13 +375,14 @@ export default function UltimasOrdens({ orders, search = false }) {
       </section>
 
       <Dialog
-        closable={false}
+        closable={windowWidth > 769 ? false : true}
         header="ORDEM DE SERVIÇO"
         visible={visible}
         style={{
           zIndex: 999999,
           minWidth: "60vw",
         }}
+        onHide={() => setVisible(false)}
       >
         {pageForm == 1 ? (
           <InfoClient
@@ -473,6 +488,9 @@ export default function UltimasOrdens({ orders, search = false }) {
 
         <footer className="footerForm">
           <Button
+          pt={{
+            root: {className: "rootBtnResp"}
+          }}
             onClick={() => {
               setPageForm(1);
               setVisible(false);
@@ -487,8 +505,9 @@ export default function UltimasOrdens({ orders, search = false }) {
           <div
             style={{
               display: "flex",
-              gap: "10px",
+              gap: "10px"
             }}
+            className="boxOptResp"
           >
             <Button
               label="EXPORTAR EM PDF"
@@ -498,6 +517,9 @@ export default function UltimasOrdens({ orders, search = false }) {
               iconPos="right"
               onClick={handleExportPDF}
               outlined
+              pt={{
+                label: {className: "labelBtnResp"}
+              }}
             />
             <Button
               label={titleButtom}
@@ -506,6 +528,9 @@ export default function UltimasOrdens({ orders, search = false }) {
               severity="info"
               iconPos="right"
               onClick={paginationForm}
+              pt={{
+                label: {className: "labelBtnResp"}
+              }}
             />
           </div>
         </footer>

@@ -1,75 +1,73 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useState, useCallback, useContext, useEffect } from "react";
-import { BarChart, Bar, Cell, XAxis } from "recharts";
+import { BarChart, Bar, Cell, XAxis, ResponsiveContainer } from "recharts";
 import { OrderContext } from "../../contexts/Order";
 
 import "./style.css";
 
 export default function Charts({ setMonth }) {
+  const { dataYears } = useContext(OrderContext);
 
-  const { dataYears } = useContext(OrderContext)
-  
-  const [ ageSelected, setAgeSelected ] = useState({
-    dataMes: []
-  })
-  
+  const [ageSelected, setAgeSelected] = useState({
+    dataMes: [],
+  });
+
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   const handleClick = useCallback(
     (entry, index) => {
-      console.log(entry)
-      
       setMonth(entry);
       setActiveIndex(index);
     },
     [setActiveIndex]
-    );
-    
-    const [age, setAge] = useState("");
-    
-    const handleChange = (event) => {
-      setAge(event.target.value);
-      
-      const select = dataYears.find((data) => data.year == event.target.value)
-      setAgeSelected(select)
-      setMonth(select.dataMes[0])
-    };
+  );
 
-    useEffect(() => {
-      
-      const select = dataYears[0]
+  const [age, setAge] = useState("");
 
-      if(!select) {
+  const handleChange = (event) => {
+    setAge(event.target.value);
 
-        return
-        
-      }
+    const select = dataYears.find((data) => data.year == event.target.value);
+    setAgeSelected(select);
+    setMonth(select.dataMes[0]);
+  };
 
-      setAgeSelected(select)
-      setAge(select.year)
-      setMonth(select.dataMes[0])
-      
-    },[])
+  useEffect(() => {
+    const select = dataYears[0];
+
+    if (!select) {
+      return;
+    }
+
+    setAgeSelected(select);
+    setAge(select.year);
+    setMonth(select.dataMes[0]);
+  }, []);
 
   return (
     <div className="conteinerCharts">
-      <BarChart width={window.screen.width > 769 ? 650 : 350} height={window.screen.width > 769 ? 400 : 320} data={ageSelected.dataMes}>
-        <Bar
-          dataKey="valorTotal"
-          onClick={handleClick}
-          alignmentBaseline="center"
-          barSize={30}
+      <ResponsiveContainer height={400} width={"100%"}>
+        <BarChart
+          className="test"
+          data={ageSelected.dataMes}
         >
-          {ageSelected.dataMes.map((entry, index) => (
-            <Cell
-              cursor="pointer"
-              fill={index === activeIndex ? "#0E213E" : "#3485FF33"}
-              key={`cell-${index}`}
-            />
-          ))}
-        </Bar>
-        <XAxis dataKey="name" axisLine={false} tickLine={false} />
-      </BarChart>
+          <Bar
+            dataKey="valorTotal"
+            onClick={handleClick}
+            alignmentBaseline="center"
+            barSize={30}
+          >
+            {ageSelected.dataMes.map((entry, index) => (
+              <Cell
+                cursor="pointer"
+                fill={index === activeIndex ? "#0E213E" : "#3485FF33"}
+                key={`cell-${index}`}
+              />
+            ))}
+          </Bar>
+          <XAxis dataKey="name" axisLine={false} tickLine={false} />
+        </BarChart>
+      </ResponsiveContainer>
 
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-label">Ano</InputLabel>
@@ -80,13 +78,13 @@ export default function Charts({ setMonth }) {
           label="Age"
           onChange={handleChange}
         >
-          {
-            dataYears.map((data, key) => {
-              return (
-                <MenuItem key={key} value={data.year}>{data.year}</MenuItem>
-              )
-            })
-          }
+          {dataYears.map((data, key) => {
+            return (
+              <MenuItem key={key} value={data.year}>
+                {data.year}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </div>
