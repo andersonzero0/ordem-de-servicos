@@ -6,7 +6,7 @@ import { OrderContext } from "../../contexts/Order";
 import Popover from "@mui/material/Popover";
 
 import "./style.css";
-import "./responsive.css"
+import "./responsive.css";
 
 export default function Arquivo() {
   const { orders, haveOrders } = useContext(OrderContext);
@@ -85,7 +85,7 @@ export default function Arquivo() {
                 display: "flex",
                 flexFlow: "column nowrap",
                 gap: "10px",
-                width: "100%"
+                width: "100%",
               }}
             >
               <h2 className="titleOrdens">Arquivos</h2>
@@ -134,13 +134,11 @@ export default function Arquivo() {
                       vertical: "bottom",
                       horizontal: "center",
                     }}
-
-                    style={{
-                      background: "transparent"
-                    }}
+                    className="popover"
                   >
                     <div className="boxOrderAlpha">
                       <button
+                        className="btnOrder"
                         onClick={() => {
                           let newArr = [...order];
                           setOrder(
@@ -161,13 +159,14 @@ export default function Arquivo() {
                         Crescente
                       </button>
                       <button
+                        className="btnOrder"
                         onClick={() => {
                           let newArr = [...order];
                           setOrder(
-                            [...newArr].reverse((a, b) => {
+                            [...newArr].sort((a, b) => {
                               let fa = a.name.toLowerCase();
                               let fb = b.name.toLowerCase();
-                              if (fa < fb) {
+                              if (fa > fb) {
                                 return -1;
                               }
                               if (fa > fb) {
@@ -184,10 +183,11 @@ export default function Arquivo() {
                   </Popover>
 
                   <button
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  onClick={handleClick1}>
+                    style={{
+                      cursor: "pointer",
+                    }}
+                    onClick={handleClick1}
+                  >
                     <p>Data</p>
 
                     <img src="./Vector.svg" alt="" />
@@ -202,31 +202,36 @@ export default function Arquivo() {
                       vertical: "bottom",
                       horizontal: "center",
                     }}
-
                     style={{
-                      background: "transparent"
+                      background: "transparent",
                     }}
                   >
                     <div className="boxOrderAlpha">
                       <button
+                        className="btnOrder"
                         onClick={() => {
                           let newArr = [...order];
                           setOrder(
-                            [...newArr].reverse((a, b) => {
-                              return new Date(b.create_at) - new Date(a.create_at);
-                            })
+                            [...newArr].sort(
+                              (a, b) =>
+                                Date.parse(a.create_at) -
+                                Date.parse(b.create_at)
+                            )
                           );
                         }}
                       >
                         Mais novo
                       </button>
                       <button
+                        className="btnOrder"
                         onClick={() => {
                           let newArr = [...order];
                           setOrder(
-                            [...newArr].sort((a, b) => {
-                              return new Date(b.create_at) - new Date(a.create_at);
-                            })
+                            [...newArr].sort(
+                              (a, b) =>
+                                Date.parse(b.create_at) -
+                                Date.parse(a.create_at)
+                            )
                           );
                         }}
                       >

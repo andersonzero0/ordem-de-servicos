@@ -1,7 +1,5 @@
 import { useState, useContext, useRef, useEffect } from "react";
 import { Dialog } from "primereact/dialog";
-import jsPDF from "jspdf";
-import ReactDOMServer from "react-dom/server";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
 import InfoVeicle from "../../components/FormOrdemServico/InfoVeicle";
@@ -91,6 +89,7 @@ export default function UltimasOrdens({ orders, search = false }) {
         setVisibleDelete(false);
 
         setRefresh(!refresh);
+        setVisible(false)
       });
     } catch (error) {
       return error;
@@ -177,175 +176,6 @@ export default function UltimasOrdens({ orders, search = false }) {
       setVisible(true);
     });
   }
-
-  const html = (
-    <html
-      style={{
-        boxSizing: "border-box",
-        width: "190mm",
-        fontSize: "4mm",
-      }}
-    >
-      <h1 className="titlePDF">ORDEM DE SERVIÇOS</h1>
-
-      <div>
-        <p className="labelPDF">Nome: {dataForm.name || "Não preenchido"}</p>
-        <p className="labelPDF">CPF: {dataForm.document || "Não preenchido"}</p>
-        <p className="labelPDF">
-          Apelido: {dataForm.nickname || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Solicitador: {dataForm.requester || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Endereço: {dataForm.address || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Celular: {dataForm.phone || "Não preenchido"}
-        </p>
-        <p className="labelPDF">Email: {dataForm.email || "Não preenchido"}</p>
-        <p className="labelPDF">Orçamento: {dataForm.budget ? "Sim" : "Não"}</p>
-      </div>
-
-      <hr
-        style={{
-          width: "500px",
-          margin: "20px 0",
-        }}
-      />
-
-      <div>
-        <p className="labelPDF">Modelo: {dataForm.model || "Não preenchido"}</p>
-        <p className="labelPDF">Marca: {dataForm.brand || "Não preenchido"}</p>
-        <p className="labelPDF">Placa: {dataForm.plate || "Não preenchido"}</p>
-        <p className="labelPDF">Frota: {dataForm.fleet || "Não preenchido"}</p>
-        <p className="labelPDF">
-          Chassis: {dataForm.chassis || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Renavam: {dataForm.renavam || "Não preenchido"}
-        </p>
-        <p className="labelPDF">Km: {dataForm.km || "Não preenchido"}</p>
-        <p className="labelPDF">Color: {dataForm.color || "Não preenchido"}</p>
-        <p className="labelPDF">Ano: {dataForm.age || "Não preenchido"}</p>
-        <p className="labelPDF">
-          Observação: {dataForm.observation || "Não preenchido"}
-        </p>
-      </div>
-
-      <hr
-        style={{
-          width: "500px",
-          margin: "20px 0",
-        }}
-      />
-
-      <div>
-        <p className="labelPDF">
-          Problema informado: {dataForm.reported || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Problema constatado: {dataForm.problem_verified || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Serviços realizados: {dataForm.services_performed || "Não preenchido"}
-        </p>
-      </div>
-
-      <hr
-        style={{
-          width: "500px",
-          margin: "20px 0",
-        }}
-      />
-
-      <div>
-        <p className="labelPDF">
-          NF Serviço: {dataForm.nf_service || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          NF Peças: {dataForm.nf_parts || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Faturas: {dataForm.invoices || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Descrição: {dataForm.description_general || "Não preenchido"}
-        </p>
-      </div>
-
-      <hr
-        style={{
-          width: "500px",
-          margin: "20px 0",
-        }}
-      />
-
-      <div>
-        <p className="labelPDF">
-          Obs. Pneus: {dataForm.obs_wheel || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Obs. Acessórios: {dataForm.obs_accessories || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Obs. Estrutura: {dataForm.obs_structure || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Obs: {dataForm.add_observation || "Não preenchido"}
-        </p>
-
-        <p className="labelPDF">
-          Extra Observação: {dataForm.extra_observation || "Não preenchido"}
-        </p>
-      </div>
-
-      <hr
-        style={{
-          width: "500px",
-          margin: "20px 0",
-        }}
-      />
-
-      <div>
-        <p className="labelPDF">
-          Preço total: R${dataForm.total_price || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Desconto: R${dataForm.discount || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Forma de pagamento: {dataForm.payment_method || "Não preenchido"}
-        </p>
-        <p className="labelPDF">
-          Total pago: R${dataForm.total_payable || "Não preenchido"}
-        </p>
-
-        <p className="labelPDF">
-          Status: {dataForm.status == "paidout" ? "Pago" : "Pendente"}
-        </p>
-      </div>
-    </html>
-  );
-
-  const options = {
-    orientation: "portrait",
-    format: "a4",
-  };
-
-  const handleExportPDF = async () => {
-    const doc = new jsPDF(options);
-    doc.setFontSize(12);
-    doc.html(ReactDOMServer.renderToString(html), {
-      html2canvas: {
-        scale: 0.2645,
-      },
-      margin: 10,
-      callback: function (doc) {
-        doc.save(`ordem-${id.substring(0, 8)}.pdf`);
-      },
-    });
-  };
 
   return (
     <>
@@ -552,18 +382,6 @@ export default function UltimasOrdens({ orders, search = false }) {
               severity="danger"
               iconPos="right"
               onClick={() => setVisibleDelete(true)}
-              pt={{
-                label: { className: "labelBtnResp" },
-              }}
-            />
-            <Button
-              label="EXPORTAR EM PDF"
-              disabled={loading}
-              icon={loading ? "pi pi-spinner" : "pi pi-file-export"}
-              severity="info"
-              iconPos="right"
-              onClick={handleExportPDF}
-              outlined
               pt={{
                 label: { className: "labelBtnResp" },
               }}

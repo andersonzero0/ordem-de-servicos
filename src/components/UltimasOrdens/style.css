@@ -1,34 +1,33 @@
 .titleOrdens {
-
-    font-size: 1.5em;
-    color:#0E213E;
-    
+  font-size: 1.5em;
+  color: #0e213e;
 }
 
 .conteinerOrdens {
+  width: 98%;
 
-    width: 98%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.9rem;
 
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 0.9rem;
+  height: 69.5vh;
 
-    height: 69.5vh;
+  overflow: auto;
 
-    overflow: auto;
-
-    padding-bottom: 16px;
-    
+  padding-bottom: 16px;
+}
+.divHeader {
+  width: "2480px";
+  display: "flex";
+  background: "black";
 }
 
 .titlePDF {
-
-    font-size: 20px;
-    width: 600px;
-    text-align: center;
-    
+  font-size: 20px;
+  text-align: center;
+  width: 600px;
 }
 
 .labelPDF {
-    width: 500px;
+  width: 500px;
 }
