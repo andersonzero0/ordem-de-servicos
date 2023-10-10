@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Trash } from "lucide-react";
+import { Eye } from "lucide-react";
 import "./style.css";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
@@ -21,11 +21,11 @@ export default function CardOrdem({
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function handleDelete() {
+  async function handleDelete(ref) {
     setLoading(true);
 
     try {
-      api.delete(`/order/${id}`).then((response) => {
+      api.delete(`/order/${ref}`).then((response) => {
         setVisible(false);
 
         setRefresh(!refresh);
@@ -85,15 +85,16 @@ export default function CardOrdem({
             <h3 className="idCard">Nº{id.substring(0, 8)}</h3>
             <p>{status}</p>
           </div>
-          <Trash
-            style={{
-              cursor: "pointer",
-            }}
-            color="red"
-            onClick={() => {
-              setVisible(true);
-            }}
-          />
+          <div className="boxEye">
+            <Eye
+              style={{
+                cursor: "pointer",
+              }}
+              size={26}
+              color="white"
+              onClick={onClick}
+            />
+          </div>
         </div>
       </div>
     </>

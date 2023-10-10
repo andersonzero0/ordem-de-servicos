@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useState, useCallback, useContext, useEffect } from "react";
-import { BarChart, Bar, Cell, XAxis, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, Cell, XAxis, ResponsiveContainer, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { OrderContext } from "../../contexts/Order";
 
 import "./style.css";
@@ -51,6 +51,7 @@ export default function Charts({ setMonth }) {
           className="test"
           data={ageSelected.dataMes}
         >
+          <CartesianGrid strokeDasharray="3 3" />
           <Bar
             dataKey="valorTotal"
             onClick={handleClick}
@@ -66,6 +67,7 @@ export default function Charts({ setMonth }) {
             ))}
           </Bar>
           <XAxis dataKey="name" axisLine={false} tickLine={false} />
+          <YAxis/>
         </BarChart>
       </ResponsiveContainer>
 

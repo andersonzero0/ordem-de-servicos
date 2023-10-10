@@ -22,7 +22,8 @@ export default function Dashboard() {
                 <div style={{
                     display: 'flex',
                     flexFlow: 'column nowrap',
-                    gap: '10px'
+                    gap: '10px',
+                    width: "100%",
                 }}>
                     <h2 className="titleOrdens">Últimas Ordens</h2>
                     <UltimasOrdens orders={orders}/>

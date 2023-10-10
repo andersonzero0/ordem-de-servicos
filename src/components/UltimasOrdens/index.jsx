@@ -16,6 +16,7 @@ import "./style.css";
 import "./responsive.css";
 import { OrderContext } from "../../contexts/Order";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { Trash } from "lucide-react";
 
 export default function UltimasOrdens({ orders, search = false }) {
   let modelForm = {
@@ -78,6 +79,25 @@ export default function UltimasOrdens({ orders, search = false }) {
   const handleOpen = () => {
     setOpen(true);
   };
+
+  const [visibleDelete, setVisibleDelete] = useState(false)
+  const [loadingDelete, setLoadingDelete] = useState(false)
+
+  async function handleDelete(ref) {
+    setLoadingDelete(true);
+
+    try {
+      api.delete(`/order/${ref}`).then((response) => {
+        setVisibleDelete(false);
+
+        setRefresh(!refresh);
+      });
+    } catch (error) {
+      return error;
+    } finally {
+      setLoadingDelete(false);
+    }
+  }
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
@@ -327,20 +347,6 @@ export default function UltimasOrdens({ orders, search = false }) {
     });
   };
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  });
-
   return (
     <>
       <Backdrop
@@ -375,7 +381,7 @@ export default function UltimasOrdens({ orders, search = false }) {
       </section>
 
       <Dialog
-        closable={windowWidth > 769 ? false : true}
+        closable={true}
         header="ORDEM DE SERVIÇO"
         visible={visible}
         style={{
@@ -486,11 +492,41 @@ export default function UltimasOrdens({ orders, search = false }) {
           </div>
         </Dialog>
 
+        <Dialog
+        closable={false}
+        visible={visibleDelete}
+        header="ATENÇÃO!"
+        pt={{
+          headerTitle: { style: { color: "#D12727" } },
+        }}
+      >
+        <div className="conteinerAlert">
+          <div className="boxOptDelete">
+            <Button
+              onClick={() => {
+                setVisibleDelete(false);
+              }}
+              label="CANCELAR"
+              severity="secondary"
+              outlined
+            />
+            <Button
+              onClick={() => {
+                handleDelete(dataForm.id);
+              }}
+              disabled={loadingDelete}
+              label={loadingDelete ? <CircularProgress /> : "DELETAR"}
+              severity="danger"
+            />
+          </div>
+        </div>
+      </Dialog>
+
         <footer className="footerForm">
           <Button
-          pt={{
-            root: {className: "rootBtnResp"}
-          }}
+            pt={{
+              root: { className: "rootBtnResp" },
+            }}
             onClick={() => {
               setPageForm(1);
               setVisible(false);
@@ -505,10 +541,21 @@ export default function UltimasOrdens({ orders, search = false }) {
           <div
             style={{
               display: "flex",
-              gap: "10px"
+              gap: "10px",
             }}
             className="boxOptResp"
           >
+            <Button
+              label="DELETAR"
+              disabled={loading}
+              icon="pi pi-trash"
+              severity="danger"
+              iconPos="right"
+              onClick={() => setVisibleDelete(true)}
+              pt={{
+                label: { className: "labelBtnResp" },
+              }}
+            />
             <Button
               label="EXPORTAR EM PDF"
               disabled={loading}
@@ -518,7 +565,7 @@ export default function UltimasOrdens({ orders, search = false }) {
               onClick={handleExportPDF}
               outlined
               pt={{
-                label: {className: "labelBtnResp"}
+                label: { className: "labelBtnResp" },
               }}
             />
             <Button
@@ -529,7 +576,7 @@ export default function UltimasOrdens({ orders, search = false }) {
               iconPos="right"
               onClick={paginationForm}
               pt={{
-                label: {className: "labelBtnResp"}
+                label: { className: "labelBtnResp" },
               }}
             />
           </div>

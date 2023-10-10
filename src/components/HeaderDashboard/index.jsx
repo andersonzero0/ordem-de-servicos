@@ -196,13 +196,14 @@ export default function HeaderDashboard() {
 
       <Dialog
       className="dialogModal"
-        closable={false}
+        closable={true}
         header="ORDEM DE SERVIÇO"
         visible={visible}
         style={{
           zIndex: 999999,
           minWidth: "60vw"
         }}
+        onHide={() => setVisible(false)}
       >
         {pageForm == 1 ? (
           <InfoClient

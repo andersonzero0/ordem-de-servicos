@@ -85,6 +85,7 @@ export default function Arquivo() {
                 display: "flex",
                 flexFlow: "column nowrap",
                 gap: "10px",
+                width: "100%"
               }}
             >
               <h2 className="titleOrdens">Arquivos</h2>
