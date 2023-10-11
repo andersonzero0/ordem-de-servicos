@@ -14,7 +14,6 @@ import "./style.css";
 import "./responsive.css";
 import { OrderContext } from "../../contexts/Order";
 import { Backdrop, CircularProgress } from "@mui/material";
-import { Trash } from "lucide-react";
 
 export default function UltimasOrdens({ orders, search = false }) {
   let modelForm = {
@@ -83,6 +82,7 @@ export default function UltimasOrdens({ orders, search = false }) {
 
   async function handleDelete(ref) {
     setLoadingDelete(true);
+    setOpen(true)
 
     try {
       api.delete(`/order/${ref}`).then((response) => {
@@ -90,6 +90,7 @@ export default function UltimasOrdens({ orders, search = false }) {
 
         setRefresh(!refresh);
         setVisible(false)
+        setOpen(false)
       });
     } catch (error) {
       return error;

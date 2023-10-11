@@ -35,7 +35,7 @@ export default function Navbar() {
         </div>
       </Link>
 
-      <LogOut className="btnLogOut" size={30} color="red" style={{
+      <LogOut className="btnLogOut" size={30} color="white" style={{
             cursor: "pointer"
           }} onClick={() => {
             

@@ -67,3 +67,7 @@
     bottom: 10px;
     
 }
+
+.btnLogOut:hover {
+    color: #FF293B;
+}

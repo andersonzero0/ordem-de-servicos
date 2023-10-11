@@ -1,4 +1,4 @@
-import { Download, Eye } from "lucide-react";
+import { Download, Eye, Loader } from "lucide-react";
 import "./style.css";
 import { api } from "../../service/api";
 import React, { useEffect, useState } from "react";
@@ -35,8 +35,6 @@ export default function CardOrdem({
     };
     getOrdem();
   }, []);
-
-
 
   Font.register({
     family: "Poppins",
@@ -269,14 +267,18 @@ export default function CardOrdem({
               document={<MyDocument data={order} />}
               fileName={`ordem-${id.substring(0, 5)}.pdf`}
             >
-              <Download
-                style={{
-                  cursor: "pointer",
-                }}
-                size={26}
-                color="white"
-                onClick={handleDownload}
-              />
+              {downloadDisable ? (
+                <Loader />
+              ) : (
+                <Download
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  size={26}
+                  color="white"
+                  onClick={handleDownload}
+                />
+              )}
             </PDFDownloadLink>
           </div>
         </div>
