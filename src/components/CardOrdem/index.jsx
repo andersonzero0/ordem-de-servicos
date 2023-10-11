@@ -268,7 +268,7 @@ export default function CardOrdem({
               fileName={`ordem-${id.substring(0, 5)}.pdf`}
             >
               {downloadDisable ? (
-                <Loader />
+                <Loader color="white" />
               ) : (
                 <Download
                   style={{
