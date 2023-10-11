@@ -110,10 +110,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    background-color: #0E213E;
     padding: 4px;
     border-radius: 4px;
     justify-content: center;
     align-items: center;
     
+}
+
+.linkPDF {
+    height: 28px;
 }
