@@ -7,6 +7,7 @@ import ResumoFinanceiro from "../../components/ResumoFinanceiro"
 import "./style.css"
 import "./responsive.css"
 import { OrderContext } from "../../contexts/Order";
+import CardAnalysis from "../../components/CardsAnalysis";
 
 export default function Dashboard() {
     const { orders } = useContext(OrderContext)
@@ -31,6 +32,7 @@ export default function Dashboard() {
                 <div>
                     <h2 className="titleResumoFinanceiro">Resumo Financeiro</h2>
                     <ResumoFinanceiro/>
+                    {/* //<CardAnalysis/> */}
                 </div>
             </div>
             

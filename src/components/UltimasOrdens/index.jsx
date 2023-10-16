@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Dialog } from "primereact/dialog";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
@@ -14,6 +14,7 @@ import "./style.css";
 import "./responsive.css";
 import { OrderContext } from "../../contexts/Order";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { Paginator } from "primereact/paginator";
 
 export default function UltimasOrdens({ orders, search = false }) {
   let modelForm = {
@@ -61,7 +62,16 @@ export default function UltimasOrdens({ orders, search = false }) {
   };
 
   const [dataForm, setDataForm] = useState(modelForm);
-  const { refresh, setRefresh } = useContext(OrderContext);
+  const { refresh, setRefresh, countOrders, setCountOrders } = useContext(OrderContext);
+  const [first, setFirst] = useState(0);
+  const [ordersView, setOrdersView] = useState([])
+
+  const onPageChange = async (event) => {
+    const response = await api.get(`/order?page=${event.first}`)
+    setOrdersView(response.data.orders)
+    setCountOrders(response.data.count)
+    setFirst(event.first);
+  };
 
   const [visible, setVisible] = useState(false);
   const [visibleAlert, setVisibleAlert] = useState(false);
@@ -77,20 +87,20 @@ export default function UltimasOrdens({ orders, search = false }) {
     setOpen(true);
   };
 
-  const [visibleDelete, setVisibleDelete] = useState(false)
-  const [loadingDelete, setLoadingDelete] = useState(false)
+  const [visibleDelete, setVisibleDelete] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   async function handleDelete(ref) {
     setLoadingDelete(true);
-    setOpen(true)
+    setOpen(true);
 
     try {
       api.delete(`/order/${ref}`).then((response) => {
         setVisibleDelete(false);
 
         setRefresh(!refresh);
-        setVisible(false)
-        setOpen(false)
+        setVisible(false);
+        setOpen(false);
       });
     } catch (error) {
       return error;
@@ -178,6 +188,12 @@ export default function UltimasOrdens({ orders, search = false }) {
     });
   }
 
+  useEffect(() => {
+    if(orders.length > 0) {
+      setOrdersView(orders) 
+    }
+  }, [orders])
+
   return (
     <>
       <Backdrop
@@ -187,8 +203,8 @@ export default function UltimasOrdens({ orders, search = false }) {
         <CircularProgress color="inherit" />
       </Backdrop>
       <section className="conteinerOrdens">
-        {orders.length != 0 ? (
-          orders.map((data, key) => {
+        {ordersView.length != 0 ? (
+          ordersView.map((data, key) => {
             return (
               <CardOrdem
                 name={data.name}
@@ -209,6 +225,7 @@ export default function UltimasOrdens({ orders, search = false }) {
         ) : (
           <p>Não há ordens!</p>
         )}
+        <Paginator first={first} rows={10} totalRecords={countOrders} onPageChange={onPageChange}/>
       </section>
 
       <Dialog
@@ -324,34 +341,34 @@ export default function UltimasOrdens({ orders, search = false }) {
         </Dialog>
 
         <Dialog
-        closable={false}
-        visible={visibleDelete}
-        header="ATENÇÃO!"
-        pt={{
-          headerTitle: { style: { color: "#D12727" } },
-        }}
-      >
-        <div className="conteinerAlert">
-          <div className="boxOptDelete">
-            <Button
-              onClick={() => {
-                setVisibleDelete(false);
-              }}
-              label="CANCELAR"
-              severity="secondary"
-              outlined
-            />
-            <Button
-              onClick={() => {
-                handleDelete(dataForm.id);
-              }}
-              disabled={loadingDelete}
-              label={loadingDelete ? <CircularProgress /> : "DELETAR"}
-              severity="danger"
-            />
+          closable={false}
+          visible={visibleDelete}
+          header="ATENÇÃO!"
+          pt={{
+            headerTitle: { style: { color: "#D12727" } },
+          }}
+        >
+          <div className="conteinerAlert">
+            <div className="boxOptDelete">
+              <Button
+                onClick={() => {
+                  setVisibleDelete(false);
+                }}
+                label="CANCELAR"
+                severity="secondary"
+                outlined
+              />
+              <Button
+                onClick={() => {
+                  handleDelete(dataForm.id);
+                }}
+                disabled={loadingDelete}
+                label={loadingDelete ? <CircularProgress /> : "DELETAR"}
+                severity="danger"
+              />
+            </div>
           </div>
-        </div>
-      </Dialog>
+        </Dialog>
 
         <footer className="footerForm">
           <Button

@@ -1,0 +1,28 @@
+.conteinerCardAnalysis {
+  display: flex;
+  flex-flow: column;
+  gap: 4px;
+}
+
+.subCardAnalysis {
+  width: 270px;
+  height: 130px;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  padding: 0 16px;
+}
+
+.titleCardAnalysis {
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+.valueCardAnalysis {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #404040;
+}
