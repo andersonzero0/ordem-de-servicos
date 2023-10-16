@@ -94,6 +94,7 @@ export default function Arquivo() {
               <UltimasOrdens
                 orders={order}
                 search={haveOrders ? true : false}
+                visiblePagination={true}
               />
             </div>
 

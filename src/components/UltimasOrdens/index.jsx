@@ -16,7 +16,7 @@ import { OrderContext } from "../../contexts/Order";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { Paginator } from "primereact/paginator";
 
-export default function UltimasOrdens({ orders, search = false }) {
+export default function UltimasOrdens({ orders, search = false, visiblePagination = false }) {
   let modelForm = {
     name: "",
     document: "",
@@ -225,7 +225,7 @@ export default function UltimasOrdens({ orders, search = false }) {
         ) : (
           <p>Não há ordens!</p>
         )}
-        <Paginator first={first} rows={10} totalRecords={countOrders} onPageChange={onPageChange}/>
+        <Paginator alwaysShow={visiblePagination} first={first} rows={10} totalRecords={countOrders} onPageChange={onPageChange}/>
       </section>
 
       <Dialog
