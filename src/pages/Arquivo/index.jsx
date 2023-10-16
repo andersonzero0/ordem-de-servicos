@@ -17,9 +17,10 @@ export default function Arquivo() {
   const handleQuery = async (e) => {
     setQuery(e.target.value);
 
-    const newResult = await ordersMany.filter((data) =>
-      data.name.includes(e.target.value)
-    );
+    const newResult = await ordersMany.filter((data) => {
+      const name = (data.name).toLowerCase()
+      return name.includes((e.target.value).toLowerCase())
+    });
 
     setOrder(newResult);
   };
