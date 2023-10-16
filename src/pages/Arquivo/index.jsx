@@ -9,7 +9,7 @@ import "./style.css";
 import "./responsive.css";
 
 export default function Arquivo() {
-  const { orders, haveOrders } = useContext(OrderContext);
+  const { orders, haveOrders, ordersMany } = useContext(OrderContext);
 
   const [query, setQuery] = useState("");
   const [order, setOrder] = useState([]);
@@ -17,7 +17,7 @@ export default function Arquivo() {
   const handleQuery = async (e) => {
     setQuery(e.target.value);
 
-    const newResult = await orders.filter((data) =>
+    const newResult = await ordersMany.filter((data) =>
       data.name.includes(e.target.value)
     );
 

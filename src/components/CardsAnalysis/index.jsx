@@ -18,13 +18,13 @@ export default function CardAnalysis({
 
         <p style={{
           color: "#168039"
-        }} className="valueCardAnalysis">R${totalPendente}</p>
+        }} className="valueCardAnalysis">R${totalPago}</p>
       </div>
 
       <div className="subCardAnalysis">
         <p className="titleCardAnalysis">Serviços pendentes</p>
 
-        <p className="valueCardAnalysis">R${totalPago}</p>
+        <p className="valueCardAnalysis">R${totalPendente}</p>
       </div>
     </div>
   );
