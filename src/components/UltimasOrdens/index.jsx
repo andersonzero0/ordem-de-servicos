@@ -236,7 +236,11 @@ export default function UltimasOrdens({ orders, search = false }) {
           zIndex: 999999,
           minWidth: "60vw",
         }}
-        onHide={() => setVisible(false)}
+        onHide={() => {
+          setPageForm(1)
+          setDataForm(modelForm)
+          setVisible(false)
+        }}
       >
         {pageForm == 1 ? (
           <InfoClient

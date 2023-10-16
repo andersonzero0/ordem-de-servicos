@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import ButtonNew from "../ButtonNew";
 import "./style.css";
-import "./responsive.css"
+import "./responsive.css";
 import { Dialog } from "primereact/dialog";
 
 import InfoClient from "../../components/FormOrdemServico/InfoCliet";
@@ -66,18 +66,19 @@ export default function HeaderDashboard() {
   const [dataForm, setDataForm] = useState(modelForm);
 
   const [visible, setVisible] = useState(false);
+
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [concluded, setConcluded] = useState(false);
-  const [slideMenu, setSlideMenu] = useState(false)
-  const { setRefresh, refresh } = useContext(OrderContext)
-  const { setToken } = useContext(AuthContext)
+  const [slideMenu, setSlideMenu] = useState(false);
+  const { setRefresh, refresh } = useContext(OrderContext);
+  const { setToken } = useContext(AuthContext);
 
   const [titleButtom, setTitleButton] = useState("Continuar");
 
   const [pageForm, setPageForm] = useState(1);
-  const [idOrder, setIdOrder] = useState("")
+  const [idOrder, setIdOrder] = useState("");
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   function paginationForm() {
     if (pageForm == 1) {
@@ -110,22 +111,21 @@ export default function HeaderDashboard() {
     }
 
     if (pageForm == 6) {
-
-      setLoading(true)
+      setLoading(true);
 
       api
         .post("/order", dataForm)
         .then((response) => {
-          const id = response.data.id
-          
-          setIdOrder(id.substring(0, 8))
+          const id = response.data.id;
+
+          setIdOrder(id.substring(0, 8));
           setConcluded(true);
-          setPageForm(1)
-          setLoading(false)
-          setRefresh(!refresh)
+          setPageForm(1);
+          setLoading(false);
+          setRefresh(!refresh);
         })
         .catch((error) => {
-          setLoading(false)
+          setLoading(false);
           console.log(error.response.data);
         });
     }
@@ -149,18 +149,28 @@ export default function HeaderDashboard() {
           </div>
         </div>
 
-        <div className="box_btnMenu" onClick={() => {
-          setSlideMenu(!slideMenu)
-        }}>
+        <div
+          className="box_btnMenu"
+          onClick={() => {
+            setSlideMenu(!slideMenu);
+          }}
+        >
           <img className="btn_menuHOff" src="./Menu_Hamburguer.svg" alt="" />
         </div>
       </header>
 
-      <div className="boxMenuHover" style={slideMenu ? {
-        display: "block"
-      } : {
-        display: "none"
-      }}>
+      <div
+        className="boxMenuHover"
+        style={
+          slideMenu
+            ? {
+                display: "block",
+              }
+            : {
+                display: "none",
+              }
+        }
+      >
         <Link className="linkMenu" to={"/dashboard"}>
           <img src="./dashboard.svg" alt="" />
           <p>Dashboard</p>
@@ -177,33 +187,43 @@ export default function HeaderDashboard() {
         </Link>
 
         <Link className="linkMenu" to="#">
-        <LogOut size={30} color="red" style={{
-              cursor: "pointer"
-            }} onClick={() => {
-          
-              Cookies.remove('token')
-              setToken(null)
-          
-            }} />
+          <LogOut
+            size={30}
+            color="red"
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              Cookies.remove("token");
+              setToken(null);
+            }}
+          />
         </Link>
       </div>
 
-      <div className="boxPlus" onClick={() => {
-        setVisible(true)
-      }}>
+      <div
+        className="boxPlus"
+        onClick={() => {
+          setVisible(true);
+        }}
+      >
         <img src="./PlusOutline.svg" alt="" />
       </div>
 
       <Dialog
-      className="dialogModal"
+        className="dialogModal"
         closable={true}
         header="ORDEM DE SERVIÇO"
         visible={visible}
         style={{
           zIndex: 999999,
-          minWidth: "60vw"
+          minWidth: "60vw",
         }}
-        onHide={() => setVisible(false)}
+        onHide={() => {
+          setPageForm(1);
+          setDataForm(modelForm);
+          setVisible(false);
+        }}
       >
         {pageForm == 1 ? (
           <InfoClient
