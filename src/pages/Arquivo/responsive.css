@@ -15,6 +15,10 @@
     
   }
 
+  .sectionArquivos {
+    width: 100vh;
+  }
+
   .conteinerOrganize > div {
     flex-flow: row nowrap;
   }
