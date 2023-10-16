@@ -1,0 +1,9 @@
+@media screen and (max-width: 768px) {
+  .box_extra {
+    gap: 10px;
+  }
+
+  .box_extraInfo {
+    display: none;
+  }
+}

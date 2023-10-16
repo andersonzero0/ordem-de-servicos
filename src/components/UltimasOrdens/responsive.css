@@ -4,8 +4,7 @@
     width: 95vw;
 
     margin: auto;
-    height: 50vh;
-    
+    max-height: 50vh;
   }
 
   .boxPlus {

@@ -1,5 +1,6 @@
 import { Download, Eye, Loader } from "lucide-react";
 import "./style.css";
+import "./responsive.css"
 import { api } from "../../service/api";
 import React, { useEffect, useState } from "react";
 import { Image, PDFDownloadLink } from "@react-pdf/renderer";
