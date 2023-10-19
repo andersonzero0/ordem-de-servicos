@@ -10,9 +10,11 @@ export default function OrderProvider({ children }) {
   const [dataYears, setDataYears] = useState([]);
   const [ordersMany, setOrdersMany] = useState([]);
   const [countOrders, setCountOrders] = useState(0)
+  const [loadingOrder, setLoadingOrder] = useState(false);
 
 
   async function getOrders() {
+    setLoadingOrder(true)
     try {
       const response = await api.get("/order?page=0");
       const { data } = await api.get("order/many");
@@ -26,6 +28,8 @@ export default function OrderProvider({ children }) {
     } catch (error) {
       console.log(error);
       setHaveOrders(false);
+    } finally {
+      setLoadingOrder(false)
     }
   }
 
@@ -45,7 +49,7 @@ export default function OrderProvider({ children }) {
   }, [refresh]);
 
   return (
-    <OrderContext.Provider value={{ orders, dataYears, setOrders, haveOrders, refresh, setRefresh, countOrders, setCountOrders, ordersMany }}>
+    <OrderContext.Provider value={{ orders, dataYears, setOrders, haveOrders, refresh, setRefresh, countOrders, setCountOrders, ordersMany, loadingOrder }}>
       {children}
     </OrderContext.Provider>
   );

@@ -1,6 +1,6 @@
 import { Download, Eye, Loader } from "lucide-react";
 import "./style.css";
-import "./responsive.css"
+import "./responsive.css";
 import { api } from "../../service/api";
 import React, { useEffect, useState } from "react";
 import { Image, PDFDownloadLink } from "@react-pdf/renderer";
@@ -52,177 +52,232 @@ export default function CardOrdem({
       fontFamily: "Poppins",
     },
     section: {
-      margin: 10,
-      padding: 10,
-      backgroundColor: "#0E213E",
-      borderRadius: "8",
-      flexDirection: "row",
+      margin: "4 8",
+      borderRadius: "2",
+      flexDirection: "column",
       gap: "2",
       flexWrap: "wrap",
       justifyContent: "space-evenly",
-      alignItems: "center",
+      alignItems: "start",
+      border: "1 solid #0E213E",
+    },
+    title: {
+      fontWeight: "extrabold"
+    },
+    header: {
+      backgroundColor: "#0E213E",
+      color: "white",
+      width: "100%",
+      textAlign: "center",
+    },
+    titleHeader: {
+      fontSize: 14,
+    },
+    content: {
+      width: "100%",
+      padding: 4,
+      flexDirection: "row",
+      flexWrap: "wrap"
     },
     text: {
-      fontWeight: "ultrabold",
-      fontSize: "16",
-      color: "white",
-      textDecoration: "underline",
+      fontWeight: "normal",
+      fontSize: "12",
+      color: "black",
+      width: "50%"
     },
     section_logo: {
       margin: "0 auto",
       textAlign: "center",
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "4 8"
     },
     img: {
       width: "50",
       height: "50",
     },
+    date: {
+      fontSize: "12"
+    }
   });
 
   const MyDocument = ({ data }) => {
+    var date = new Date(data.create_at);
+    const dateString = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    
     return (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section_logo}>
+            <View>
+              <Text>ORDERM DE SERVIÇO</Text>
+              <Text style={styles.date}><Text style={styles.title}>ID:</Text> {(data.id)}</Text>
+              <Text style={styles.date}><Text style={styles.title}>CRIADO EM:</Text> {dateString}</Text>
+            </View>
             <Image src="./Logo.png" style={styles.img} />
           </View>
           <View style={styles.section}>
-            <Text style={styles.text}>
-              Nome: {data.name ? data.name : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              CPF: {data.document ? data.document : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Apelido: {data.nickname ? data.nickname : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Solicitador: {data.requester ? data.requester : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Celular: {data.phone ? data.phone : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Email: {data.email ? data.email : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Orçamento: {data.budget ? "Sim" : "Não"}
-            </Text>
+            <View style={styles.header}>
+              <Text style={styles.titleHeader}>Informações do Cliente</Text>
+            </View>
+
+            <View style={styles.content}>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Nome:</Text> {data.name ? data.name : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>CPF:</Text> {data.document ? data.document : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Apelido:</Text> {data.nickname ? data.nickname : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Solicitador:</Text>{" "}
+                {data.requester ? data.requester : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Celular:</Text> {data.phone ? data.phone : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Email:</Text> {data.email ? data.email : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Orçamento:</Text> {data.budget ? "Sim" : "Não"}
+              </Text>
+            </View>
           </View>
+
           <View style={styles.section}>
-            <Text style={styles.text}>
-              Modelo: {data.model ? data.model : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Marca: {data.brand ? data.brand : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Placa: {data.plate ? data.plate : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Frota: {data.fleet ? data.fleet : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Chassis: {data.chassis ? data.chassis : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Renavam: {data.renavam ? data.renavam : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Km: {data.km ? data.km : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Cor: {data.color ? data.color : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Ano: {data.age ? data.age : "Não preenchido"}
-            </Text>
+            <View style={styles.header}>
+              <Text style={styles.titleHeader}>Informações do veículo</Text>
+            </View>
+
+            <View style={styles.content}>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Modelo:</Text> {data.model ? data.model : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Marca:</Text> {data.brand ? data.brand : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Placa:</Text> {data.plate ? data.plate : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Frota:</Text> {data.fleet ? data.fleet : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Chassis:</Text> {data.chassis ? data.chassis : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Renavam:</Text> {data.renavam ? data.renavam : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Km:</Text> {data.km ? data.km : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Cor:</Text> {data.color ? data.color : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Ano:</Text> {data.age ? data.age : "Não preenchido"}
+              </Text>
+            </View>
           </View>
+
           <View style={styles.section}>
-            <Text style={styles.text}>
-              Problema Informado:{" "}
-              {data.reported ? data.reported : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Problema Constatado:{" "}
-              {data.problem_verified ? data.problem_verified : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Serviços realizados:{" "}
-              {data.services_performed
-                ? data.services_performed
-                : "Não preenchido"}
-            </Text>
+            <View style={styles.header}>
+              <Text style={styles.titleHeader}>Informações sobre o serviço</Text>
+            </View>
+
+            <View style={styles.content}>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Problema Informado:</Text> {data.reported ? data.reported : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Problema Constatado:</Text> {data.problem_verified
+                  ? data.problem_verified
+                  : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Serviços realizados:</Text> {data.services_performed
+                  ? data.services_performed
+                  : "Não preenchido"}
+              </Text>
+            </View>
           </View>
+
           <View style={styles.section}>
-            <Text style={styles.text}>
-              NF Serviço: {data.nf_service ? data.nf_service : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              NF Peças: {data.nf_parts ? data.nf_parts : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Faturas: {data.invoices ? data.invoices : "Não preenchido"}
-            </Text>
+            <View style={styles.header}>
+              <Text style={styles.titleHeader}>Descrições Gerais</Text>
+            </View>
+
+            <View style={styles.content}>
+              <Text style={styles.text}>
+                <Text style={styles.title}>NF Serviço:</Text> {data.nf_service ? data.nf_service : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>NF Peças:</Text> {data.nf_parts ? data.nf_parts : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Faturas:</Text> {data.invoices ? data.invoices : "Não preenchido"}
+              </Text>
+            </View>
           </View>
+
           <View style={styles.section}>
-            <Text style={styles.text}>
-              Obs. Pneus: {data.obs_wheel ? data.obs_wheel : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Obs. Acessórios:{" "}
-              {data.obs_accessories ? data.obs_accessories : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Obs. Estrutura:{" "}
-              {data.obs_structure ? data.obs_structure : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Observações:{" "}
-              {data.add_observation ? data.add_observation : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Obs. Extra:{" "}
-              {data.extra_observation
-                ? data.extra_observation
-                : "Não preenchido"}
-            </Text>
+            <View style={styles.header}>
+              <Text style={styles.titleHeader}>Observações adicionais sobre o veículo</Text>
+            </View>
+
+            <View style={styles.content}>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Obs. Pneus:</Text> {data.obs_wheel ? data.obs_wheel : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Obs. Acessórios:</Text> {data.obs_accessories ? data.obs_accessories : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Obs. Estrutura:</Text> {data.obs_structure ? data.obs_structure : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Observações:</Text> {data.add_observation ? data.add_observation : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Obs. Extra:</Text> {data.extra_observation
+                  ? data.extra_observation
+                  : "Não preenchido"}
+              </Text>
+            </View>
           </View>
+
           <View style={styles.section}>
-            <Text style={styles.text}>
-              Preço total: R$
-              {data.total_price ? data.total_price : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Desconto: R${data.discount ? data.discount : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Obs. Estrutura: R$
-              {data.obs_structure ? data.obs_structure : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Método:{" "}
-              {data.payment_method ? data.payment_method : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Total pago: R$
-              {data.total_payable ? data.total_payable : "Não preenchido"}
-            </Text>
-            <Text style={styles.text}>
-              Pago: R${data.status == "pending" ? "Não" : "Sim"}
-            </Text>
+            <View style={styles.header}>
+              <Text style={styles.titleHeader}>Pagamento</Text>
+            </View>
+
+            <View style={styles.content}>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Preço total:</Text> R${data.total_price ? data.total_price : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Desconto:</Text> R${data.discount ? data.discount : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Método:</Text> {data.payment_method ? (data.payment_method).toUpperCase() : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Total pago:</Text> R${data.total_payable ? data.total_payable : "Não preenchido"}
+              </Text>
+              <Text style={styles.text}>
+                <Text style={styles.title}>Pago:</Text> {data.status == "pending" ? "Não" : "Sim"}
+              </Text>
+            </View>
           </View>
         </Page>
       </Document>
     );
   };
-
-  async function handleDownload() {
-    try {
-      const { data } = await api.get(`/order/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <>
@@ -277,7 +332,6 @@ export default function CardOrdem({
                   }}
                   size={26}
                   color="white"
-                  onClick={handleDownload}
                 />
               )}
             </PDFDownloadLink>

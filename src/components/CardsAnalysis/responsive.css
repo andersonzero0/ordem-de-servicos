@@ -1,0 +1,22 @@
+@media screen and (max-width: 768px) {
+  .conteinerCardAnalysis {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .subCardAnalysis {
+    width: 180px;
+    height: 110px;
+  }
+
+  .titleCardAnalysis {
+    font-weight: bolder;
+    font-size: 0.9rem;
+  }
+  
+  .valueCardAnalysis {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #404040;
+  }
+}

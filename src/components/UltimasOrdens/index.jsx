@@ -15,6 +15,7 @@ import "./responsive.css";
 import { OrderContext } from "../../contexts/Order";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { Paginator } from "primereact/paginator";
+import { Loader } from "lucide-react";
 
 export default function UltimasOrdens({ orders, search = false, visiblePagination = false }) {
   let modelForm = {
@@ -62,7 +63,7 @@ export default function UltimasOrdens({ orders, search = false, visiblePaginatio
   };
 
   const [dataForm, setDataForm] = useState(modelForm);
-  const { refresh, setRefresh, countOrders, setCountOrders } = useContext(OrderContext);
+  const { refresh, setRefresh, countOrders, setCountOrders, loadingOrder } = useContext(OrderContext);
   const [first, setFirst] = useState(0);
   const [ordersView, setOrdersView] = useState([])
 
@@ -223,7 +224,7 @@ export default function UltimasOrdens({ orders, search = false, visiblePaginatio
         ) : search ? (
           <p>Não há ordens com esse nome!</p>
         ) : (
-          <p>Não há ordens!</p>
+          loadingOrder ? <Loader/> : <p>Não há ordens!</p>
         )}
         <Paginator alwaysShow={visiblePagination} first={first} rows={10} totalRecords={countOrders} onPageChange={onPageChange}/>
       </section>

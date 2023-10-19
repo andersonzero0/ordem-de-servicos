@@ -25,6 +25,7 @@ export default function Charts({ setMonth }) {
   const [age, setAge] = useState("");
 
   const handleChange = (event) => {
+    setActiveIndex(0)
     setAge(event.target.value);
 
     const select = dataYears.find((data) => data.year == event.target.value);
